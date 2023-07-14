@@ -17,26 +17,30 @@ export const LogIn = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email"> Email </label>
-      <input
-        value={email}
-        type="email"
-        placeholder="your email"
-        name="email"
-        id="email"
-        onChange={handleEmailChange}
-      ></input>
-      <label htmlFor="password"> Password </label>
-      <input
-        value={password}
-        type="password"
-        placeholder="minimum 8 characters"
-        name="password"
-        id="password"
-        onChange={handlePasswordChange}
-      ></input>
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email"> Email </label>
+        <input
+          value={email}
+          type="email"
+          placeholder="your email"
+          name="email"
+          id="email"
+          onChange={handleEmailChange}
+        ></input>
+        <label htmlFor="password"> Password </label>
+        <input
+          value={password}
+          type="password"
+          placeholder="minimum 8 characters"
+          name="password"
+          id="password"
+          onChange={handlePasswordChange}
+          min={8}
+        ></input>
+        <button type="submit">Submit</button>
+      </form>
+      <button>Don't have an account? Register here</button>
+    </>
   );
 };
