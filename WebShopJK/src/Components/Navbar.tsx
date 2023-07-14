@@ -1,4 +1,3 @@
-import React from 'react';
 
 /* export function NavBar () {
   return (
@@ -16,10 +15,10 @@ import React from 'react';
     </Navbar>
   );
 }; */
-
-export default function Navbar() {
+import React from 'react'
+ export default function Navbar() {
   return <nav className='nav'>
-    <a href='' className='site-title'> TShirts</a>
+    <a href='/' className='site-title'> TShirts</a>
     <ul>
       <li>
         <a href='/women'> Women </a>
@@ -35,5 +34,8 @@ export default function Navbar() {
     </li>
     </ul>
   </nav>
-}
+} 
+
+
+
 
