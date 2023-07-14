@@ -1,17 +1,13 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 import { LogIn } from "./Components/LogIn";
+import { Register } from "./Components/Register";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentForm, setCurrentForm] = useState("login");
 
-  return (
-    <>
-      <LogIn />
-    </>
-  );
+  return <>{currentForm === "login" ? <LogIn /> : <Register />}</>;
 }
 
 export default App;

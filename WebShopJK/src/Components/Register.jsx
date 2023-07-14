@@ -1,9 +1,13 @@
 import { useState } from "react";
 
-export const LogIn = () => {
+export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -19,6 +23,15 @@ export const LogIn = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="name"> Full Name </label>
+        <input
+          value={name}
+          type="name"
+          placeholder="Your Full Name"
+          name="email"
+          id="email"
+          onChange={handleNameChange}
+        ></input>
         <label htmlFor="email"> Email </label>
         <input
           value={email}
