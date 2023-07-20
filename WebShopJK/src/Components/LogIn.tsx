@@ -18,31 +18,33 @@ export const LogIn = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email"> Email </label>
-        <input
-          value={email}
-          type="email"
-          placeholder="your email"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-        ></input>
-        <label htmlFor="password"> Password </label>
-        <input
-          value={password}
-          type="password"
-          placeholder="minimum 8 characters"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-          min={8}
-        ></input>
-        <button type="submit">Submit</button>
-      </form>
-      <button onClick={() => props.onFormSwitch("register")}>
-        Don't have an account? Register here
-      </button>
+      <div className="auth-form">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email"> Email </label>
+          <input
+            value={email}
+            type="email"
+            placeholder="your email"
+            name="email"
+            id="email"
+            onChange={handleEmailChange}
+          ></input>
+          <label htmlFor="password"> Password </label>
+          <input
+            value={password}
+            type="password"
+            placeholder="minimum 8 characters"
+            name="password"
+            id="password"
+            onChange={handlePasswordChange}
+            min={8}
+          ></input>
+          <button type="submit">Submit</button>
+        </form>
+        <button onClick={() => props.onFormSwitch("register")}>
+          Don't have an account? Register here
+        </button>
+      </div>
     </>
   );
 };

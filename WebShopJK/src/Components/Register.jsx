@@ -22,40 +22,42 @@ export const Register = (props) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name"> Full Name </label>
-        <input
-          value={name}
-          type="name"
-          placeholder="Your Full Name"
-          name="email"
-          id="email"
-          onChange={handleNameChange}
-        ></input>
-        <label htmlFor="email"> Email </label>
-        <input
-          value={email}
-          type="email"
-          placeholder="your email"
-          name="email"
-          id="email"
-          onChange={handleEmailChange}
-        ></input>
-        <label htmlFor="password"> Password </label>
-        <input
-          value={password}
-          type="password"
-          placeholder="minimum 8 characters"
-          name="password"
-          id="password"
-          onChange={handlePasswordChange}
-          min={8}
-        ></input>
-        <button type="submit">Submit</button>
-      </form>
-      <button onClick={() => props.onFormSwitch("login")}>
-        Have an account? Log in here
-      </button>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name"> Full Name </label>
+          <input
+            value={name}
+            type="name"
+            placeholder="Your Full Name"
+            name="email"
+            id="email"
+            onChange={handleNameChange}
+          ></input>
+          <label htmlFor="email"> Email </label>
+          <input
+            value={email}
+            type="email"
+            placeholder="your email"
+            name="email"
+            id="email"
+            onChange={handleEmailChange}
+          ></input>
+          <label htmlFor="password"> Password </label>
+          <input
+            value={password}
+            type="password"
+            placeholder="minimum 8 characters"
+            name="password"
+            id="password"
+            onChange={handlePasswordChange}
+            min={8}
+          ></input>
+          <button type="submit">Submit</button>
+        </form>
+        <button onClick={() => props.onFormSwitch("login")}>
+          Have an account? Log in here
+        </button>
+      </div>
     </>
   );
 };
