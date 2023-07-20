@@ -11,7 +11,15 @@ function App() {
     setCurrentForm(formName);
   };
 
-  return <>{currentForm === "login" ? <LogIn /> : <Register />}</>;
+  return (
+    <>
+      {currentForm === "login" ? (
+        <LogIn onFormSwitch={toggleForm} />
+      ) : (
+        <Register onFormSwitch={toggleForm} />
+      )}
+    </>
+  );
 }
 
 export default App;

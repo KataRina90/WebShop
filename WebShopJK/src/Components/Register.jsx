@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Register = () => {
+export const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -53,7 +53,9 @@ export const Register = () => {
         ></input>
         <button type="submit">Submit</button>
       </form>
-      <button>Have an account? Log in here</button>
+      <button onClick={() => props.onFormSwitch("login")}>
+        Have an account? Log in here
+      </button>
     </>
   );
 };
