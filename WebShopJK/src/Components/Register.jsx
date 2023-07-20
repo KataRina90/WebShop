@@ -52,9 +52,12 @@ export const Register = (props) => {
             onChange={handlePasswordChange}
             min={8}
           ></input>
-          <button type="submit">Submit</button>
+          <button type="submit">Register</button>
         </form>
-        <button onClick={() => props.onFormSwitch("login")}>
+        <button
+          className="link-button"
+          onClick={() => props.onFormSwitch("login")}
+        >
           Have an account? Log in here
         </button>
       </div>

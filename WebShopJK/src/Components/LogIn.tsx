@@ -39,9 +39,12 @@ export const LogIn = (props) => {
             onChange={handlePasswordChange}
             min={8}
           ></input>
-          <button type="submit">Submit</button>
+          <button type="submit">Log In</button>
         </form>
-        <button onClick={() => props.onFormSwitch("register")}>
+        <button
+          className="link-button"
+          onClick={() => props.onFormSwitch("register")}
+        >
           Don't have an account? Register here
         </button>
       </div>
