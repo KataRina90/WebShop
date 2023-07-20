@@ -20,22 +20,25 @@ import React from 'react'
   return <nav className='nav'>
     <a href='/' className='site-title'> TShirts</a>
     <ul>
-      <li>
-        <a href='/women'> Women </a>
-      </li>
-      <li>
-        <a href='/men'> Men </a> 
-        </li>
-    <li> 
-    <a href='/kids'> Kids  </a> 
-    </li>
-    <li> 
-    <a href='/kids'> About  </a> 
-    </li>
-    </ul>
+ <CustomLink href='/'> Home </CustomLink>
+ <CustomLink href='/about'> About </CustomLink>
+ <CustomLink href='/women'> Women </CustomLink>
+ <CustomLink href='/men'> Men </CustomLink>
+ <CustomLink href='/kids'> Kids </CustomLink>
+ </ul>
   </nav>
 } 
+interface CustomLinkProps {
+  href:string;
+  children:string
+}
 
-
-
-
+function CustomLink({ href,children, ...props }: CustomLinkProps) {
+  const path=window.location.pathname;
+  return (
+    <li className={path===href? "active":""}>
+    <a href={href}{...props}> {children}
+    </a>
+    </li>
+  );
+}
