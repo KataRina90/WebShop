@@ -53,7 +53,7 @@ export const Register = () => {
         ></input>
         <button type="submit">Submit</button>
       </form>
-      <button>Don't have an account? Register here</button>
+      <button>Have an account? Log in here</button>
     </>
   );
 };
