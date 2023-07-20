@@ -18,8 +18,8 @@ export const LogIn = (props) => {
 
   return (
     <>
-      <div className="auth-form">
-        <form onSubmit={handleSubmit}>
+      <div className="auth-form-container">
+        <form className="login-form" onSubmit={handleSubmit}>
           <label htmlFor="email"> Email </label>
           <input
             value={email}
