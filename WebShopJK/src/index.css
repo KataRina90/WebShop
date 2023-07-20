@@ -5,7 +5,8 @@
   min-height: 100vh;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(79deg, #fcfced, #8674ff 68%, #ebf6ff);
+  background-image: linear-gradient(79deg, #fc2929, #8674ff 68%, #910917);
+  color: white;
 }
 
 .auth-form-container,
@@ -21,10 +22,10 @@ label {
 }
 
 input {
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 0.4rem;
-  border: 1px solid #ccc;
   margin-bottom: 1rem;
+  border: none;
 }
 
 button {
