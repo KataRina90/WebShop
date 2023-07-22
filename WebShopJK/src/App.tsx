@@ -7,9 +7,10 @@ import About from './Components/About'
 import Men from './Components/Men'
 import Women from './Components/Women'
 import Kids from './Components/Kids'
+import {Route, Routes} from "react-router-dom"
 
 function App() {
-  let Component
+/*   let Component
   switch (window.location.pathname) {
     case "/":{
       Component=Home;
@@ -33,10 +34,16 @@ function App() {
       break;
   }
   default:
-    Component = () => <div>404 Not Found</div>;}
-  return (<> 
+    Component = () => <div>404 Not Found</div>;} */
+  return (<>  
  <Navbar/>
-  <Component/>
+ <Routes> 
+  <Route path='/' element={<Home/>}/>
+  <Route path='/women' element={<Women/>}/>
+  <Route path='/men' element={<Men/>}/>
+  <Route path='/kids' element={<Kids/>}/>
+  <Route path='/about' element={<About/>}/>
+  </Routes>
   </>)
 }
 export default App
