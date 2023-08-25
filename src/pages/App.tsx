@@ -1,13 +1,13 @@
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './Components/Navbar';
-import React from 'react';
-import Home from './Components/Home';
-import About from './Components/About'
-import Men from './Components/Men'
-import Women from './Components/Women'
-import Kids from './Components/Kids'
 import {Route, Routes} from "react-router-dom"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from '../Components/Navbar';
+import Home from '../Components/Home';
+import About from '../Components/About'
+import Men from '../Components/Men'
+import Women from '../Components/Women'
+import Kids from '../Components/Kids'
+
 
 function App() {
 /*   let Component
