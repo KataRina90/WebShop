@@ -28,7 +28,7 @@ const products: Array<IProduct> = [
     },
     {
         id: '003',
-        name: 'Winter',
+        name: 'WinterVibe',
         colors: [Color.white, Color.black],
         brand: brands[0],
         description: 'your perfect summer choice',
