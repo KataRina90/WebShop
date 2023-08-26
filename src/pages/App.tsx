@@ -1,49 +1,52 @@
-import './App.css'
-import {Route, Routes} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from '../Components/Navbar';
-import Home from '../Components/Home';
-import About from '../Components/About'
-import Men from '../Components/Men'
-import Women from '../Components/Women'
-import Kids from '../Components/Kids'
-
-
-function App() {
-/*   let Component
-  switch (window.location.pathname) {
-    case "/":{
-      Component=Home;
-      break;
+import { Color, IBrand, IProduct, Size } from "../Products/Product";
+import { ProductList } from "../Products/ProductList";
+const brands: IBrand[] = [
+    { brandName: 'Adidas', models: [] },
+    { brandName: 'BOSS', models: [] },
+    { brandName: 'La Coste', models: [] }
+]
+const products: Array<IProduct> = [
+    {
+        id: '001',
+        name: 'SummerVibe',
+        colors: [Color.white, Color.yellow, Color.pink],
+        brand: brands[0],
+        description: 'your perfect summer choice',
+        imageURL: '',
+        price: 50,
+        sizes: [Size.XS, Size.S, Size.M]
+    },
+    {
+        id: '002',
+        name: 'AutumnVibe',
+        colors: [Color.yellow, Color.green],
+        brand: brands[0],
+        description: 'your perfect summer choice',
+        imageURL: '',
+        price: 50,
+        sizes: [Size.XS, Size.S, Size.M]
+    },
+    {
+        id: '003',
+        name: 'Winter',
+        colors: [Color.white, Color.black],
+        brand: brands[0],
+        description: 'your perfect summer choice',
+        imageURL: '',
+        price: 50,
+        sizes: [Size.XS, Size.S, Size.M]
+    },
+    {
+        id: '004',
+        name: 'SpringVibe',
+        colors: [Color.yellow, Color.pink],
+        brand: brands[0],
+        description: 'your perfect summer choice',
+        imageURL: '',
+        price: 50,
+        sizes: [Size.XS, Size.S, Size.M]
     }
-
-    case "/about":{
-      Component=About;
-    break;}
-
-    case "/men": {
-      Component=Men;
-    break;}
-   
-    case "/women": {
-      Component=Women;
-    break;}
-  
-    case "/kids": {
-      Component=Kids;
-      break;
-  }
-  default:
-    Component = () => <div>404 Not Found</div>;} */
-  return (<>  
- <Navbar/>
- <Routes> 
-  <Route path='/' element={<Home/>}/>
-  <Route path='/women' element={<Women/>}/>
-  <Route path='/men' element={<Men/>}/>
-  <Route path='/kids' element={<Kids/>}/>
-  <Route path='/about' element={<About/>}/>
-  </Routes>
-  </>)
+]
+export default function App() {
+    return <ProductList list={products} />
 }
-export default App
