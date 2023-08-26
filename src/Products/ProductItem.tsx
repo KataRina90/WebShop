@@ -5,10 +5,11 @@ export interface ProductItemProps {
 export function ProductItem(props:ProductItemProps) {
     return (
         <div>
-            <img src={props.item.imageURL} />
+            <img src={props.item.imageURL} width='300' height='300'/>
             <p> {props.item.name} </p>
             <p> {props.item.sizes.map(e => <span> {Size[e]}</span>)} </p>
             <p> {props.item.colors.map(e => <span> {Color[e]}</span>)}</p>
+            <p> Price: {props.item.price} EUR </p>
         </div>
     )
 }
