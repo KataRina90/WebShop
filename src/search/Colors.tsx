@@ -8,6 +8,7 @@ export interface ColorProps {
 
 export default function Colors(props: ColorProps) {
   const [selectedColor, setSelectedColor] = useState("");
+
   return (
     <Container>
       <div>
@@ -18,6 +19,11 @@ export default function Colors(props: ColorProps) {
           name="color"
         >
           <option value="">All Colors</option>
+          {props.colors.map((color) => (
+            <option key={color} value={color}>
+              {color}
+            </option>
+          ))}
         </select>
       </div>
     </Container>
