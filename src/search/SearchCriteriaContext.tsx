@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { iSearchCriteria } from "./SearchCriteria";
 import {
   SearchCriteriaAction,
@@ -12,22 +12,24 @@ const emptySearchCriteria: iSearchCriteria = {
 const searchCriteriaContext =
   createContext<iSearchCriteria>(emptySearchCriteria);
 
-function getDispatchContext(f: React.Dispatch<SearchCriteriaAction>) {
-  return createContext<React.Dispatch<SearchCriteriaAction>>(f);
-}
+const DispatchContext = createContext<React.Dispatch<SearchCriteriaAction>>(
+  null as unknown as React.Dispatch<SearchCriteriaAction>
+);
 export default function SearchCriteriaProvider({
   children,
-}: React.PropsWithChildren<any>) {
+}: React.PropsWithChildren<unknown>) {
   const [searchCriteriaState, dispatchCriteriaFunction] = useReducer(
     searchCriteriaReducer,
     emptySearchCriteria
   );
-  const ContextDispatch = getDispatchContext(dispatchCriteriaFunction);
   return (
     <searchCriteriaContext.Provider value={searchCriteriaState}>
-      <ContextDispatch.Provider value={dispatchCriteriaFunction}>
+      <DispatchContext.Provider value={dispatchCriteriaFunction}>
         {children}
-      </ContextDispatch.Provider>
+      </DispatchContext.Provider>
     </searchCriteriaContext.Provider>
   );
+}
+export function useSearchCriteriaProvider() {
+  return [useContext(searchCriteriaContext), useContext(DispatchContext)];
 }
