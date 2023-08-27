@@ -26,11 +26,11 @@ export interface ProductItemProps {
 }
 export function ProductItem(props: ProductItemProps) {
     const navigate=useNavigate();
-    function showDetails() {
-        navigate ('/product') //go to route for product detail once ready
+    function showDetails(id:string) {
+        navigate ('/product/'+id) //go to route for product detail once ready
     }
     return (
-        <Card style={{ width: '18rem', cursor: "pointer" }} onClick={showDetails}>
+        <Card style={{ width: '18rem', cursor: "pointer" }} onClick={e=> showDetails(props.item.id)}>
             <Card.Img variant='top' src={props.item.imageURL} width='300' height='300' />
             <CardHeader> {props.item.brand.brandName}</CardHeader>
             <Card.Body>

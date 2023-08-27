@@ -27,7 +27,7 @@ export default function App() {
                             <Col sm={8}>  <ProductList /> </Col>
                         </Container>
                     } />
-                    <Route path='/product' element={
+                    <Route path='/product/:id' element={
                         <Container>
                             <Col sm={8}>  <ProductDetails /> </Col>
                         </Container>
