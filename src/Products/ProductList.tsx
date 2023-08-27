@@ -1,14 +1,27 @@
-import { IProduct } from './Product';
 import { ProductItem } from './ProductItem';
-export interface ProductListProps {
+import {CardGroup} from 'react-bootstrap';
+import { useContext } from 'react';
+import { ProductListContext, products } from './ProductListContext';
+/* export interface ProductListProps {
     list: Array <IProduct>
-}
-export function ProductList(props:ProductListProps) {
+} */
+/* export function ProductList(props:ProductListProps) {
     return (
-        <div>
+        <CardGroup>
         {props.list.map (e=> <ProductItem item={e}/> )
         
         }
-        </div>
+        </CardGroup>
+    )
+} */
+
+export function ProductList() {
+ const list=useContext(ProductListContext)
+    return (
+        <CardGroup>
+        {list.map (e=> <ProductItem item={e}/> )
+        
+        }
+        </CardGroup>
     )
 }
