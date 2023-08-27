@@ -1,5 +1,5 @@
 import { Color, Size } from "../Products/Product";
-import { iSearchCriteria } from "./SearchCriteria";
+import { ISearchCriteria } from "./SearchCriteria";
 
 export type SearchCriteriaAction =
   | { type: "rangeFrom"; from: number }
@@ -10,9 +10,9 @@ export type SearchCriteriaAction =
   | { type: "removeSize"; size: Size };
 
 export function searchCriteriaReducer(
-  oldCriteria: iSearchCriteria,
+  oldCriteria: ISearchCriteria,
   action: SearchCriteriaAction
-): iSearchCriteria {
+): ISearchCriteria {
   switch (action.type) {
     case "rangeFrom": {
       return {

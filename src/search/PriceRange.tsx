@@ -1,39 +1,44 @@
 import { Container, Form } from "react-bootstrap";
-import { useState } from "react";
+import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
 
 export interface PriceRangeProps {
   from: number;
   to: number;
 }
 export default function PriceRange(props: PriceRangeProps) {
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(Infinity);
-  function searchHandler(event: Event) {
-    event.preventDefault();
-  }
+  const [searchCriteria, dispatch] = useSearchCriteriaProvider();
+
   return (
     <Container>
-      <Form onSubmit={searchHandler}>
-        <div>Price Range</div>
-        <div>
-          <label htmlFor="from">from</label>
-          <input
-            onChange={(e) => setFrom(Number(e.target.value))}
-            value={from}
-            name="from"
-            type="number"
-          />
-        </div>
-        <div>
-          <label htmlFor="to">to</label>
-          <input
-            onChange={(e) => setTo(Number(e.target.value))}
-            value={to}
-            name="to"
-            type="number"
-          />
-        </div>
-      </Form>
+      <div>Price Range</div>
+      <div>
+        <label htmlFor="from">from</label>
+        <input
+          onChange={(e) =>
+            dispatch({
+              type: "rangeFrom",
+              from: Number(e.target.value),
+            })
+          }
+          value={searchCriteria.priceRange?.from}
+          name="from"
+          type="number"
+        />
+      </div>
+      <div>
+        <label htmlFor="to">to</label>
+        <input
+          onChange={(e) =>
+            dispatch({
+              type: "rangeTo",
+              to: Number(e.target.value),
+            })
+          }
+          value={searchCriteria.priceRange?.to}
+          name="to"
+          type="number"
+        />
+      </div>
     </Container>
   );
 }
