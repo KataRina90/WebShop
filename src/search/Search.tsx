@@ -9,6 +9,7 @@ export default function SearchCriteria() {
       <div> Search Criteria</div>
       <PriceRange from={0} to={0} />
       <Colors colors={colorOptions} />
+      <button>Search</button>
     </>
   );
 }

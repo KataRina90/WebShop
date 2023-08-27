@@ -8,9 +8,9 @@ export interface PriceRangeProps {
 export default function PriceRange(props: PriceRangeProps) {
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(Infinity);
-  const searchHandler = (e) => {
-    e.preventDefault();
-  };
+  function searchHandler(event: Event) {
+    event.preventDefault();
+  }
   return (
     <Container>
       <Form onSubmit={searchHandler}>

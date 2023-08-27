@@ -1,10 +1,10 @@
-import { Size, Color } from "../Products/Product"
+import { Size, Color } from "../Products/Product";
 
-export interface SearchCriteria {
-    priceRange: {
-        from: number,
-        to:number
-    } 
-    sizes:Size[],
-    colors:Color[]
+export interface iSearchCriteria {
+  priceRange?: {
+    from?: number;
+    to?: number;
+  };
+  sizes: Size[];
+  colors: Color[];
 }
