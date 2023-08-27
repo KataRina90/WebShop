@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Searchbar from "./Components/Searchbar";
 
 import { LogIn } from "./Components/LogIn";
 import { Register } from "./Components/Register";
