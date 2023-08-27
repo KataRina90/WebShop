@@ -1,68 +1,33 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
 import { iSearchCriteria } from "./SearchCriteria";
-import { Color, Size } from "../Products/Product";
-import Colors from "./Colors";
+import {
+  SearchCriteriaAction,
+  searchCriteriaReducer,
+} from "./SearchCriteriaReducers";
 
-const searchCriteriaContext = createContext<iSearchCriteria>({
+const emptySearchCriteria: iSearchCriteria = {
   colors: [],
   sizes: [],
-});
+};
+const searchCriteriaContext =
+  createContext<iSearchCriteria>(emptySearchCriteria);
 
-export default function SearchCriteriaProvider(children) {
-  return;
+function getDispatchContext(f: React.Dispatch<SearchCriteriaAction>) {
+  return createContext<React.Dispatch<SearchCriteriaAction>>(f);
 }
-
-export type SearchCriteriaAction =
-  | { type: "rangeFrom"; from: number }
-  | { type: "rangeTo"; to: number }
-  | { type: "addColor"; color: Color }
-  | { type: "removeColor"; color: Color }
-  | { type: "addSize"; size: Size }
-  | { type: "removeSize"; size: Size };
-
-export function searchCriteriaReducer(
-  oldCriteria: iSearchCriteria,
-  action: SearchCriteriaAction
-): iSearchCriteria {
-  switch (action.type) {
-    case "rangeFrom": {
-      return {
-        ...oldCriteria,
-        priceRange: { ...oldCriteria.priceRange, from: action.from },
-      };
-    }
-    case "rangeTo": {
-      return {
-        ...oldCriteria,
-        priceRange: { ...oldCriteria.priceRange, to: action.to },
-      };
-    }
-    case "addColor": {
-      return {
-        ...oldCriteria,
-        colors: [...oldCriteria.colors, action.color],
-      };
-    }
-
-    case "removeColor":
-      return {
-        ...oldCriteria,
-        colors: oldCriteria.colors.filter((color) => color !== action.color),
-      };
-    case "addSize": {
-      return {
-        ...oldCriteria,
-        sizes: [...oldCriteria.sizes, action.size],
-      };
-    }
-
-    case "removeSize":
-      return {
-        ...oldCriteria,
-        sizes: oldCriteria.sizes.filter((size) => size !== action.size),
-      };
-
-    default:
-      return oldCriteria;
-  }
+export default function SearchCriteriaProvider({
+  children,
+}: React.PropsWithChildren<any>) {
+  const [searchCriteriaState, dispatchCriteriaFunction] = useReducer(
+    searchCriteriaReducer,
+    emptySearchCriteria
+  );
+  const ContextDispatch = getDispatchContext(dispatchCriteriaFunction);
+  return (
+    <searchCriteriaContext.Provider value={searchCriteriaState}>
+      <ContextDispatch.Provider value={dispatchCriteriaFunction}>
+        {children}
+      </ContextDispatch.Provider>
+    </searchCriteriaContext.Provider>
+  );
 }
