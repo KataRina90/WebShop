@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { Card } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom"
 import { Color, IProduct, Size } from "./Product";
 import { ProductListContext } from "./ProductListContext";
@@ -10,21 +9,30 @@ export function ProductDetails() {
     const list = useContext(ProductListContext)
     const productDetail = list.find(e => e.id === id) as IProduct //uvek tretiraj kao IProduct, u suprotnom moze da bude undefined
     return (
-        <Card style={{ width: '18rem', cursor: "pointer" }}>
-        <Card.Img variant='top' src={productDetail.imageURL} width='300' height='300' />
-        <CardHeader> {productDetail.brand.brandName}</CardHeader>
-        <Card.Body>
-            <Card.Title> {productDetail.name}</Card.Title>
-            <Card.Text>
-                {productDetail.sizes.map(e => <span> {Size[e]}</span>)}
-            </Card.Text>
-            <Card.Text>
-                {productDetail.colors.map(e => <span> {Color[e]}</span>)}
-            </Card.Text>
-            <Card.Text>
-                Price: {productDetail.price} EUR
-            </Card.Text>
-        </Card.Body>
-    </Card>
+           <Container>  
+            <Row>
+                <Col sm={9}>
+                    <Container> 
+                    <Card style={{ width: '18rem', cursor: "pointer" }}>
+                        <Card.Img variant='top' src={productDetail.imageURL} width='300' height='300' />
+                    </Card>
+                    </Container>
+                </Col>
+
+                <Col sm={3}>
+                    <Container>
+                        <h1> {productDetail.brand.brandName} </h1>
+                        <h4> {productDetail.name} </h4>
+                        <p> {productDetail.price} EUR </p>
+                        <p>  {productDetail.sizes.map(e => <span> {Size[e]}</span>)} </p>
+                        <p>  {productDetail.colors.map(e => <span> {Color[e]}</span>)} </p>
+                        <p>  Product description: {productDetail.description} </p>
+            
+            
+                        <button> Add to basket  </button>
+                    </Container>
+                </Col>
+            </Row>
+            </Container>
     )
 }
