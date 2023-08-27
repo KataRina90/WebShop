@@ -2,6 +2,7 @@ import { Color, IProduct, Size } from './Product';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+import { useNavigate } from 'react-router-dom';
 
 function BasicExample() {
     return (
@@ -24,8 +25,9 @@ export interface ProductItemProps {
     item: IProduct
 }
 export function ProductItem(props: ProductItemProps) {
+    const navigate=useNavigate();
     function showDetails() {
-        alert ('check out the product') //go to route for product detail once ready
+        navigate ('/product') //go to route for product detail once ready
     }
     return (
         <Card style={{ width: '18rem', cursor: "pointer" }} onClick={showDetails}>
