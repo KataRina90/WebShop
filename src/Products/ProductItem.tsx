@@ -24,8 +24,11 @@ export interface ProductItemProps {
     item: IProduct
 }
 export function ProductItem(props: ProductItemProps) {
+    function showDetails() {
+        alert ('check out the product') //go to route for product detail once ready
+    }
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem', cursor: "pointer" }} onClick={showDetails}>
             <Card.Img variant='top' src={props.item.imageURL} width='300' height='300' />
             <CardHeader> {props.item.brand.brandName}</CardHeader>
             <Card.Body>
