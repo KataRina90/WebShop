@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { useState } from "react";
 
 export interface ColorProps {
-  colors: string;
+  colors: string[];
 }
 
 export default function Colors(props: ColorProps) {
