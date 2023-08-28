@@ -55,3 +55,7 @@ export const ProductListContext= createContext<IProduct[]> (products)
 //inicijalna je niz products koji je tipa niz IProduct.
 //export const ProductListContext= createContext <Array <IProduct> > (products)
 // kontekst je konktejner koji cuva neke podatke. hoces da ti podaci budu dostupni nekim komponentama - napravi se kontejner 
+
+export function getProductByID (id:string):IProduct|undefined {
+return products.find(p=>p.id===id)
+}

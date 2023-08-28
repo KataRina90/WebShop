@@ -1,7 +1,6 @@
-import { Color } from "react-bootstrap/esm/types"
-import { Size } from "../Products/Product"
+import { Size, Color } from "../Products/Product"
 
-export interface BasketItem {
+export interface IBasketItem {
     productId:string
     productAmount:number
     price: number
@@ -9,7 +8,7 @@ export interface BasketItem {
     color: Color
 }
 export interface IBasket{
-    items:BasketItem[]
+    items:IBasketItem[]
     totalItemsNo: number // total number of all items in the basket 
     totalPrice: number  // total price for all items in the basket
 }
