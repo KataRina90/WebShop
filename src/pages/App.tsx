@@ -14,7 +14,9 @@ export default function App() {
 
         <Container>
             <Row>
-                <Col sm={10}> <h1 style={{ textAlign: 'center' }}> TShirt </h1> </Col>
+                <Col sm={1}> Home
+                </Col>
+                <Col sm={9}> <h1 style={{ textAlign: 'center' }}> TShirt </h1> </Col>
                 <Col sm={1}> <button> LogIn </button></Col>
                 <Col sm={1}> <button> Basket </button></Col>
             </Row>
