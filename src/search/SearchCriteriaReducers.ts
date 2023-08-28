@@ -4,10 +4,10 @@ import { ISearchCriteria } from "./SearchCriteria";
 export type SearchCriteriaAction =
   | { type: "rangeFrom"; from: number }
   | { type: "rangeTo"; to: number }
-  | { type: "addColor"; color: Color }
-  | { type: "removeColor"; color: Color }
-  | { type: "addSize"; size: Size }
-  | { type: "removeSize"; size: Size };
+  | { type: "addColor"; color: string }
+  | { type: "removeColor"; color: string }
+  | { type: "addSize"; size: string }
+  | { type: "removeSize"; size: string };
 
 export function searchCriteriaReducer(
   oldCriteria: ISearchCriteria,
