@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { Route, Routes } from "react-router-dom";
 import { ProductDetails } from "../Products/ProductDetails";
 import SearchCriteria from "../search/Search";
+import { Link } from "react-router-dom";
 
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
 
         <Container>
             <Row>
-                <Col sm={1}> Home
+                <Col sm={1}> <Link to={'/'}> Home </Link>
                 </Col>
                 <Col sm={9}> <h1 style={{ textAlign: 'center' }}> TShirt </h1> </Col>
                 <Col sm={1}> <button> LogIn </button></Col>
