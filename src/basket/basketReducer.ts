@@ -1,6 +1,8 @@
+import { Color } from "react-bootstrap/esm/types";
+import { Size } from "../Products/Product";
 import { IBasket } from "./basketStructure";
 export type BasketAction =
-    | { type: "addItem"; productId: string, amount: number, price: number }
+    | { type: "addItem"; productId: string, amount: number, price: number, size:Size, color: Color }
     | { type: "removeItem"; productIndex: number }
     | { type: "editItem"; productId: string, amount: number, price:number }
 
@@ -12,7 +14,7 @@ export function BasketReducer(
         case "addItem": {
             return {
                 ...oldBasket,
-                items: [...oldBasket.items, { productId: action.productId, productAmount: action.amount,price:action.price}],
+                items: [...oldBasket.items, { productId: action.productId, productAmount: action.amount,price:action.price,color:action.color, size:action.size}],
                 totalItemsNo: oldBasket.totalItemsNo + action.amount,
                 totalPrice: oldBasket.totalPrice + action.price
             };
