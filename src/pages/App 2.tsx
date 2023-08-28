@@ -1,16 +1,15 @@
-import './App.css'
-import {Route, Routes} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from '../Components/Navbar';
-import Home from '../Components/Home';
-import About from '../Components/About'
-import Men from '../Components/Men'
-import Women from '../Components/Women'
-import Kids from '../Components/Kids'
-
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "../Components/Navbar";
+import Home from "../Components/Home";
+import About from "../Components/About";
+import Men from "../Components/Men";
+import Women from "../Components/Women";
+import Kids from "../Components/Kids";
 
 function App() {
-/*   let Component
+  /*   let Component
   switch (window.location.pathname) {
     case "/":{
       Component=Home;
@@ -35,16 +34,18 @@ function App() {
   }
   default:
     Component = () => <div>404 Not Found</div>;} */
-  return (<>  
- <Navbar/>
- <Routes> 
-  <Route path='/' element={<Home/>}/>
-  <Route path='/women' element={<Women/>}/>
-  <Route path='/men' element={<Men/>}/>
-  <Route path='/kids' element={<Kids/>}/>
-  <Route path='/about' element={<About/>}/>
-  </Routes>
-  </>)
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/women" element={<Women />} />
+        <Route path="/men" element={<Men />} />
+        <Route path="/kids" element={<Kids />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;

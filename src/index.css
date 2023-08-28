@@ -34,10 +34,9 @@ body {
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
-  padding: 0 1rem; 
+  padding: 0 1rem;
   width: 100%;
   border: 0;
-
 }
 .nav a {
   color: inherit;
@@ -45,15 +44,15 @@ body {
   height: 100%;
   display: flex;
   align-items: center;
-  padding: .25rem;
+  padding: 0.25rem;
   border: 0;
 }
 
 .nav li.active {
-  background-color:darkmagenta
+  background-color: darkmagenta;
 }
 .nav li:hover {
-  background-color:rgb(199, 168, 199)
+  background-color: rgb(199, 168, 199);
 }
 
 .nav ul {
@@ -67,9 +66,8 @@ body {
 
 .site-title {
   font-size: x-large;
-  font-weight:bold
+  font-weight: bold;
 }
-
 
 /* button {
   border-radius: 8px;

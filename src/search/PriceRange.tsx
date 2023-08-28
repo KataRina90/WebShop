@@ -1,11 +1,7 @@
 import { Container, Form } from "react-bootstrap";
 import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
 
-export interface PriceRangeProps {
-  from: number;
-  to: number;
-}
-export default function PriceRange(props: PriceRangeProps) {
+export default function PriceRange() {
   const [searchCriteria, dispatch] = useSearchCriteriaProvider();
 
   return (

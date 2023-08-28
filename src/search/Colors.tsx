@@ -1,31 +1,21 @@
-import React from "react";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
+import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
+import { colorList } from "../Products/Product";
+import Form from "react-bootstrap/Form";
 
-export interface ColorProps {
-  colors: string[];
-}
-
-export default function Colors(props: ColorProps) {
-  const [selectedColor, setSelectedColor] = useState("");
+export default function Colors() {
+  const [searchCriteria, dispatch] = useSearchCriteriaProvider();
 
   return (
     <Container>
-      <div>
-        <label htmlFor="color">Color</label>
-        <select
-          value={selectedColor}
-          onChange={(e) => setSelectedColor(e.target.value)}
-          name="color"
-        >
-          <option value="">All Colors</option>
-          {props.colors.map((color) => (
-            <option key={color} value={color}>
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
+      <form>
+        {colorList.map((e, index) => (
+          <form key={index}>
+            <input name={e} value={e} type="checkbox" id={index.toString()} />
+            <label htmlFor={index.toString()}>{e}</label>
+          </form>
+        ))}
+      </form>
     </Container>
   );
 }
