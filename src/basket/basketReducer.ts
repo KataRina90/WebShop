@@ -4,7 +4,7 @@ import { IBasket } from "./basketStructure";
 export type BasketAction =
     | { type: "addItem"; productId: string, amount: number, price: number, size:Size, color: Color }
     | { type: "removeItem"; productIndex: number }
-    | { type: "editItem"; productId: string, amount: number, price:number }
+    | { type: "editItem"; productId: string, amount: number, price:number, size:Size, color:Color }
 
 export function BasketReducer(
     oldBasket: IBasket,
@@ -40,8 +40,9 @@ export function BasketReducer(
                     return {
                      productId:e.productId,
                      price: action.price, // uzimam cenu iz akcije jer se promenila  
-                     productAmount: action.amount
-                     
+                     productAmount: action.amount,
+                     size:action.size,
+                     color:action.color
                     }
                 }       
                 else return e
