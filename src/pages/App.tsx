@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Route, Routes } from "react-router-dom";
 import { ProductDetails } from "../Products/ProductDetails";
+import SearchCriteria from "../search/Search";
 
 
 export default function App() {
@@ -19,11 +20,11 @@ export default function App() {
             </Row>
 
             <Row>
-                <Container>
+                
                    <Routes> 
                      <Route path='/' element={
                         <Container>
-                            <Col sm={4}> Search Filter </Col>
+                            <Col sm={4}>  <SearchCriteria /> </Col>
                             <Col sm={8}>  <ProductList /> </Col>
                         </Container>
                     } />
@@ -33,7 +34,7 @@ export default function App() {
                         </Container>
                     } />
                     </Routes>
-                </Container>
+        
             </Row>
 
             <Row>
