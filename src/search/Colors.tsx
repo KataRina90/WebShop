@@ -13,6 +13,7 @@ export default function Colors() {
   }
   return (
     <Container>
+      <div>Colors </div>
       {colorList.map((e, index) => (
         <div key={index}>
           <input
@@ -28,3 +29,14 @@ export default function Colors() {
     </Container>
   );
 }
+
+// how do i make a function that will filter the products based on the search criteria?
+
+// function filterProducts() {
+//   let filteredProducts = products.filter((product) => {
+//     if (searchCriteria.colors.length > 0) {
+//       return product.colors.includes(searchCriteria.colors);
+//     }
+//   });
+//   return filteredProducts;
+// }
