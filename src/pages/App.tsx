@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import { ProductDetails } from "../Products/ProductDetails";
 import SearchCriteria from "../search/Search";
 import { Link } from "react-router-dom";
+import { BasketComponent } from "../basket/BasketComponent";
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
         </Col>
         <Col sm={1}>
           {" "}
-          <button> Basket </button>
+          <Link to={"/basket"}> Basket </Link>
         </Col>
       </Row>
 
@@ -54,6 +55,18 @@ export default function App() {
                 <Col sm={8}>
                   {" "}
                   <ProductDetails />{" "}
+                </Col>
+              </Container>
+            }
+          />
+        
+        <Route
+            path="/basket"
+            element={
+              <Container>
+                <Col sm={8}>
+                  {" "}
+                  <BasketComponent />{" "}
                 </Col>
               </Container>
             }
