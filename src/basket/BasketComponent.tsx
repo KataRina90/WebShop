@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Card, CardGroup, Col, Row } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
 import { useNavigate } from "react-router-dom";
-import { basketContext } from "./basketContext";
+import { useBasketProvider } from "./basketContext";
 import { BasketItem } from "./BasketItem";
 
 export function BasketComponent() {
     const navigate = useNavigate();
     /*    function showDetails ()  */
-    const currentBasket = useContext(basketContext)
+    const [currentBasket,dispatch] = useBasketProvider()
     return (
         <Row>
             <Col sm={8}>
@@ -19,6 +19,7 @@ export function BasketComponent() {
 
                         {currentBasket.items.map(e => <BasketItem item={e} />)
                         }
+                
                     </CardGroup>
                 }
 
@@ -28,6 +29,7 @@ export function BasketComponent() {
                     <CardHeader> Total </CardHeader>
                     <Card.Body>
                         <Card.Text>
+                            <p> Amount: {currentBasket.totalItemsNo} </p>
                             <p> Subtotal: {currentBasket.totalPrice} </p>
                             <p> Delivery: {0} </p>
                             <p> Total with VAT: {currentBasket.totalPrice}  </p>

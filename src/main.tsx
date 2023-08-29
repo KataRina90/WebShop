@@ -6,13 +6,16 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ProductListContext } from "./Products/ProductListContext";
 import { products } from "./Products/ProductListContext";
+import { BasketProvider } from "./basket/basketContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductListContext.Provider value={products}>
-        <App />
-      </ProductListContext.Provider>
+      <BasketProvider>
+        <ProductListContext.Provider value={products}>
+          <App />
+        </ProductListContext.Provider>
+      </BasketProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -37,6 +37,7 @@ export function BasketItem(props: BasketItemProps) {
                         Amount: {props.item.productAmount}
                         Price: {props.item.price} EUR
                     </Card.Text>
+                    <button> Remove </button>
                 </Card.Body>
             </Card>
         )
