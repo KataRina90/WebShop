@@ -1,6 +1,5 @@
 import { ProductItem } from "./ProductItem";
 import { CardGroup } from "react-bootstrap";
-import { useContext } from "react";
 import { useFilterProductProvider } from "../search/FilteredProductContext";
 /* export interface ProductListProps {
     list: Array <IProduct>
