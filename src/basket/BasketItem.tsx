@@ -23,10 +23,10 @@ export function BasketItem(props: BasketItemProps) {
     }
     else
         return (
-            <Card style={{ width: '18rem', cursor: "pointer" }} onClick={e => showDetails(props.item.productId)}>
+            <Card style={{ width: '18rem', cursor: "pointer" }}>
                 <Card.Img variant='top' src={product.imageURL} width='300' height='300' />
                 <CardHeader> {product.brand.brandName}</CardHeader>
-                <Card.Body>
+                <Card.Body onClick={e => showDetails(props.item.productId)}>
                     <Card.Title> {product.name}</Card.Title>
                     <Card.Text>
                         <p> Size: {props.item.size}</p>
@@ -38,11 +38,12 @@ export function BasketItem(props: BasketItemProps) {
                         Amount: {props.item.productAmount}
                         Price: {props.item.price} EUR
                     </Card.Text>
-                    <button onClick={e=>{dispatch({
+
+                </Card.Body>
+                <button onClick={e=>{dispatch({
                         type:'removeItem',
                         productId:product.id
                     })}}> Remove </button>
-                </Card.Body>
             </Card>
         )
 }
