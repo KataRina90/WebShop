@@ -4,6 +4,8 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 import { useNavigate } from 'react-router-dom';
 import { IBasketItem } from './basketStructure';
 import { getProductByID } from '../Products/ProductListContext';
+import { useReducer } from 'react';
+import { useBasketProvider } from './basketContext';
 
 export interface BasketItemProps {
     item: IBasketItem
@@ -15,6 +17,7 @@ export function BasketItem(props: BasketItemProps) {
     }
 
     const product = getProductByID(props.item.productId)
+    const [basket,dispatch]=useBasketProvider()
     if (!product) {
         return (
         <h1> Product not found </h1>
@@ -37,7 +40,10 @@ export function BasketItem(props: BasketItemProps) {
                         Amount: {props.item.productAmount}
                         Price: {props.item.price} EUR
                     </Card.Text>
-                    <button> Remove </button>
+                    <button onClick={e=>{dispatch({
+                        type:'removeItem',
+                        productId:product.id
+                    })}}> Remove </button>
                 </Card.Body>
             </Card>
         )
