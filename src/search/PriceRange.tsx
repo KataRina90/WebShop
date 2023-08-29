@@ -10,6 +10,7 @@ export default function PriceRange() {
       <div>
         <label htmlFor="from">from</label>
         <input
+          min={0}
           onChange={(e) =>
             dispatch({
               type: "rangeFrom",
@@ -38,3 +39,10 @@ export default function PriceRange() {
     </Container>
   );
 }
+
+// const mainArray = [1, 2, 3, 4, 5];
+// const subArray = [2, 4];
+
+// const isSubArrayContained = subArray.every(elem => mainArray.includes(elem));
+
+// console.log(isSubArrayContained); // true
