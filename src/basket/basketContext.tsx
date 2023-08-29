@@ -1,4 +1,4 @@
-import { Children, createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { BasketAction, BasketReducer } from "./basketReducer";
 import { IBasket } from "./basketStructure";
 const emptyBasket: IBasket = { items: [], totalItemsNo: 0, totalPrice: 0 }
