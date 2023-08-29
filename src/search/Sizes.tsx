@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { SizeList, sizeList } from "../Products/Product";
+import { sizeList } from "../Products/Product";
 import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
 
 export interface SizesProps {

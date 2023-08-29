@@ -1,4 +1,3 @@
-import { Color, Size } from "../Products/Product";
 import { ISearchCriteria } from "./SearchCriteria";
 
 export type SearchCriteriaAction =

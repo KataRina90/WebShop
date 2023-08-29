@@ -1,14 +1,16 @@
-export enum Color {
-  white,
-  black,
-  red,
-  green,
-  blue,
-  yellow,
-  brown,
-  pink,
-}
-export type ColorList = string[];
+// export enum Color {
+//   white,
+//   black,
+//   red,
+//   green,
+//   blue,
+//   yellow,
+//   brown,
+//   pink,
+// }
+export type Color = string;
+
+export type ColorList = Color[];
 export const colorList: ColorList = [
   "white",
   "black",
@@ -19,15 +21,18 @@ export const colorList: ColorList = [
   "brown",
   "pink",
 ];
-export enum Size {
-  XS,
-  S,
-  M,
-  L,
-  XL,
-}
+// export enum Size {
+//   XS,
+//   S,
+//   M,
+//   L,
+//   XL,
+// }
 
-export type SizeList = string[];
+export type Size = string;
+
+export type SizeList = Size[];
+
 export const sizeList: SizeList = ["XS", "S", "M", "L", "XL"];
 export interface IBrand {
   brandName: string;

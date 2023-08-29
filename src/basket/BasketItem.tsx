@@ -26,10 +26,10 @@ export function BasketItem(props: BasketItemProps) {
                 <Card.Body>
                     <Card.Title> {product.name}</Card.Title>
                     <Card.Text>
-                        <p> Size: {Size[props.item.size]}</p>
+                        <p> Size: {props.item.size}</p>
                     </Card.Text>
                     <Card.Text>
-                        <p> Color: {Color[props.item.color]}</p>
+                        <p> Color: {props.item.color}</p>
                     </Card.Text>
                     <Card.Text>
                         Amount: {props.item.productAmount}

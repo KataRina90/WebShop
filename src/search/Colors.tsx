@@ -1,8 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
 import { colorList } from "../Products/Product";
-import Form from "react-bootstrap/Form";
-import React from "react";
 
 export default function Colors() {
   const [searchCriteria, dispatch] = useSearchCriteriaProvider();
