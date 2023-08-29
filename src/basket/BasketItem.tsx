@@ -1,10 +1,8 @@
-import { Color, IProduct, Size } from '../Products/Product';
 import Card from 'react-bootstrap/Card';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import { useNavigate } from 'react-router-dom';
 import { IBasketItem } from './basketStructure';
 import { getProductByID } from '../Products/ProductListContext';
-import { useReducer } from 'react';
 import { useBasketProvider } from './basketContext';
 
 export interface BasketItemProps {

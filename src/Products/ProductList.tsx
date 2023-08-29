@@ -1,7 +1,7 @@
 import { ProductItem } from './ProductItem';
 import {CardGroup} from 'react-bootstrap';
 import { useContext } from 'react';
-import { ProductListContext, products } from './ProductListContext';
+import { ProductListContext } from './ProductListContext';
 /* export interface ProductListProps {
     list: Array <IProduct>
 } */
