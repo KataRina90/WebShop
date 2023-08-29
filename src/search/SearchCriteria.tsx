@@ -22,7 +22,7 @@ export function getFilteredProducts(
       return false;
     // check for the upper range
     if (criteria.priceRange?.to && criteria.priceRange.to <= p.price)
-      return true;
+      return false;
     // check sizes
     if (!isSubArray(criteria.sizes, p.sizes)) return false;
     // check colors
