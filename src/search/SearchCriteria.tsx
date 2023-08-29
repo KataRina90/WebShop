@@ -9,7 +9,10 @@ export interface ISearchCriteria {
   colors: ColorList;
 }
 
-function filterProducts(criteria: ISearchCriteria, products: IProduct[]) {
+export function getFilteredProducts(
+  criteria: ISearchCriteria,
+  products: IProduct[]
+) {
   function isSubArray(subArray: string[], superArray: string[]) {
     return subArray.every((e) => superArray.includes(e));
   }

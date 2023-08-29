@@ -1,6 +1,6 @@
 import Colors from "./Colors";
 import PriceRange from "./PriceRange";
-import SearchCriteriaProvider from "./SearchCriteriaContext";
+import SearchCriteriaProvider from "./FilteredProductContext";
 import Sizes from "./Sizes";
 
 export default function SearchCriteria() {

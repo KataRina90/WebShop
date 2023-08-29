@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
-import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
+import { useSearchCriteriaProvider } from "./FilteredProductContext";
 
 export default function PriceRange() {
-  const [searchCriteria, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
 
   return (
     <Container>
@@ -17,7 +17,7 @@ export default function PriceRange() {
               from: Number(e.target.value),
             })
           }
-          value={searchCriteria.priceRange?.from}
+          value={filteredProducts.searchCriteria.priceRange?.from}
           name="from"
           type="number"
         />
@@ -31,7 +31,7 @@ export default function PriceRange() {
               to: Number(e.target.value),
             })
           }
-          value={searchCriteria.priceRange?.to}
+          value={filteredProducts.searchCriteria.priceRange?.to}
           name="to"
           type="number"
         />

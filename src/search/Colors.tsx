@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap";
-import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
+import { useSearchCriteriaProvider } from "./FilteredProductContext";
 import { colorList } from "../Products/Product";
 
 export default function Colors() {
-  const [searchCriteria, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
   function handleCheck(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
       dispatch({ type: "addColor", color: event.target.name });
@@ -15,7 +15,11 @@ export default function Colors() {
       {colorList.map((e, index) => (
         <div key={index}>
           <input
-            checked={searchCriteria.colors.find((s) => s === e) ? true : false}
+            checked={
+              filteredProducts.searchCriteria.colors.find((s) => s === e)
+                ? true
+                : false
+            }
             name={e}
             type="checkbox"
             id={index.toString()}

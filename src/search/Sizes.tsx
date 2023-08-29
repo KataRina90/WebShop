@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap";
 import { sizeList } from "../Products/Product";
-import { useSearchCriteriaProvider } from "./SearchCriteriaContext";
+import { useSearchCriteriaProvider } from "./FilteredProductContext";
 
 export interface SizesProps {
   sizes: string[];
 }
 
 export default function Sizes() {
-  const [searchCriteria, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
   function handleCheck(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
       dispatch({ type: "addSize", size: event.target.name });
@@ -20,7 +20,11 @@ export default function Sizes() {
       {sizeList.map((e, index) => (
         <div key={index}>
           <input
-            checked={searchCriteria.sizes.find((s) => s === e) ? true : false}
+            checked={
+              filteredProducts.searchCriteria.sizes.find((s) => s === e)
+                ? true
+                : false
+            }
             name={e}
             type="checkbox"
             id={index.toString()}
