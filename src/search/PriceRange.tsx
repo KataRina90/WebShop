@@ -25,6 +25,7 @@ export default function PriceRange() {
       <div>
         <label htmlFor="to">to</label>
         <input
+          min={0}
           onChange={(e) =>
             dispatch({
               type: "rangeTo",
