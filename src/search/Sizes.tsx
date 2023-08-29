@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap";
 import { sizeList } from "../Products/Product";
-import { useSearchCriteriaProvider } from "./FilteredProductContext";
+import { useFilterProductProvider } from "./FilteredProductContext";
 
 export interface SizesProps {
   sizes: string[];
 }
 
 export default function Sizes() {
-  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useFilterProductProvider();
   function handleCheck(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
       dispatch({ type: "addSize", size: event.target.name });

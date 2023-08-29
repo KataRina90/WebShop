@@ -1,7 +1,7 @@
 import { ProductItem } from "./ProductItem";
 import { CardGroup } from "react-bootstrap";
 import { useContext } from "react";
-import { useSearchCriteriaProvider } from "../search/FilteredProductContext";
+import { useFilterProductProvider } from "../search/FilteredProductContext";
 /* export interface ProductListProps {
     list: Array <IProduct>
 } */
@@ -16,8 +16,9 @@ import { useSearchCriteriaProvider } from "../search/FilteredProductContext";
 } */
 
 export function ProductList() {
-  const [{ filteredProducts }] = useSearchCriteriaProvider();
-  console.log("filtered products: ", filteredProducts);
+  const [{ filteredProducts }] = useFilterProductProvider();
+  console.log(filteredProducts);
+
   return (
     <CardGroup>
       {filteredProducts.map((product) => (

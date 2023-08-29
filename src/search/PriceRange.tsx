@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
-import { useSearchCriteriaProvider } from "./FilteredProductContext";
+import { useFilterProductProvider } from "./FilteredProductContext";
 
 export default function PriceRange() {
-  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useFilterProductProvider();
 
   return (
     <Container>

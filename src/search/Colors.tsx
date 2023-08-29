@@ -1,9 +1,9 @@
 import { Container } from "react-bootstrap";
-import { useSearchCriteriaProvider } from "./FilteredProductContext";
+import { useFilterProductProvider } from "./FilteredProductContext";
 import { colorList } from "../Products/Product";
 
 export default function Colors() {
-  const [filteredProducts, dispatch] = useSearchCriteriaProvider();
+  const [filteredProducts, dispatch] = useFilterProductProvider();
   function handleCheck(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
       dispatch({ type: "addColor", color: event.target.name });

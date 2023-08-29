@@ -53,7 +53,7 @@ export default function FilteredProductProvider({
     </filteredProductsContext.Provider>
   );
 }
-export function useSearchCriteriaProvider(): [
+export function useFilterProductProvider(): [
   IFilteredProducts,
   React.Dispatch<SearchCriteriaAction>
 ] {
