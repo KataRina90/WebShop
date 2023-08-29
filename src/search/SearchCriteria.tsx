@@ -21,8 +21,9 @@ function filterProducts(criteria: ISearchCriteria, products: IProduct[]) {
     if (criteria.priceRange?.to && criteria.priceRange.to <= p.price)
       return true;
     // check sizes
-    // if (!isSubArray(criteria.sizes, p.sizes))
+    if (!isSubArray(criteria.sizes, p.sizes)) return false;
+    // check colors
+    if (!isSubArray(criteria.colors, p.colors)) return false;
   };
-  const filteredProducts = products.filter(filterFunction);
-  return filterProducts;
+  return products.filter(filterFunction);
 }

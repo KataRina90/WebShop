@@ -1,16 +1,42 @@
 import { createContext, useContext, useReducer } from "react";
-import { ISearchCriteria } from "./SearchCriteria";
+import { ISearchCriteria, getFilteredProducts } from "./SearchCriteria";
 import {
   SearchCriteriaAction,
   searchCriteriaReducer,
 } from "./SearchCriteriaReducers";
+import { IProduct } from "../Products/Product";
+import { products } from "../Products/ProductListContext";
 
-const emptySearchCriteria: ISearchCriteria = {
-  colors: [],
-  sizes: [],
+export interface IFilteredProducts {
+  searchCriteria: ISearchCriteria;
+  filteredProducts: IProduct[];
+}
+
+const notFilteredProducts: IFilteredProducts = {
+  searchCriteria: {
+    colors: [],
+    sizes: [],
+  },
+  filteredProducts: products,
 };
-const searchCriteriaContext =
-  createContext<ISearchCriteria>(emptySearchCriteria);
+
+export function filteredProductsReducer(
+  oldFilteredProducts: IFilteredProducts,
+  action: SearchCriteriaAction
+): IFilteredProducts {
+  const newCriteria = searchCriteriaReducer(
+    oldFilteredProducts.searchCriteria,
+    action
+  );
+  const newFilteredProducts = getFilteredProducts(newCriteria, products);
+  return {
+    searchCriteria: newCriteria,
+    filteredProducts: newFilteredProducts,
+  };
+}
+
+const filteredProductsContext =
+  createContext<IFilteredProducts>(notFilteredProducts);
 
 const DispatchContext = createContext<React.Dispatch<SearchCriteriaAction>>(
   null as unknown as React.Dispatch<SearchCriteriaAction>
@@ -18,21 +44,21 @@ const DispatchContext = createContext<React.Dispatch<SearchCriteriaAction>>(
 export default function SearchCriteriaProvider({
   children,
 }: React.PropsWithChildren<unknown>) {
-  const [searchCriteriaState, dispatchCriteriaFunction] = useReducer(
-    searchCriteriaReducer,
-    emptySearchCriteria
+  const [filteredProductState, dispatchFilteredProducts] = useReducer(
+    filteredProductsReducer,
+    notFilteredProducts
   );
   return (
-    <searchCriteriaContext.Provider value={searchCriteriaState}>
-      <DispatchContext.Provider value={dispatchCriteriaFunction}>
+    <filteredProductsContext.Provider value={filteredProductState}>
+      <DispatchContext.Provider value={dispatchFilteredProducts}>
         {children}
       </DispatchContext.Provider>
-    </searchCriteriaContext.Provider>
+    </filteredProductsContext.Provider>
   );
 }
 export function useSearchCriteriaProvider(): [
-  ISearchCriteria,
+  IFilteredProducts,
   React.Dispatch<SearchCriteriaAction>
 ] {
-  return [useContext(searchCriteriaContext), useContext(DispatchContext)];
+  return [useContext(filteredProductsContext), useContext(DispatchContext)];
 }
