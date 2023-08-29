@@ -26,13 +26,13 @@ export function ProductItem(props: ProductItemProps) {
       <Card.Body>
         <Card.Title> {props.item.name}</Card.Title>
         <Card.Text>
-          {props.item.sizes.map((e) => (
-            <span> {e}</span>
+          {props.item.sizes.map((e, index) => (
+            <span key={index}>{e}</span>
           ))}
         </Card.Text>
         <Card.Text>
-          {props.item.colors.map((e) => (
-            <span> {e}</span>
+          {props.item.colors.map((e, index) => (
+            <span key={index}> {e}</span>
           ))}
         </Card.Text>
         <Card.Text>Price: {props.item.price} EUR</Card.Text>

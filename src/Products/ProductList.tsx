@@ -17,7 +17,7 @@ import { useSearchCriteriaProvider } from "../search/FilteredProductContext";
 
 export function ProductList() {
   const [{ filteredProducts }] = useSearchCriteriaProvider();
-
+  console.log("filtered products: ", filteredProducts);
   return (
     <CardGroup>
       {filteredProducts.map((product) => (
