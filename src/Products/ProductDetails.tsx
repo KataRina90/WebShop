@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useBasketProvider } from "../basket/basketContext";
 import { IProduct } from "./Product";
 import { ProductListContext } from "./ProductListContext";
 
@@ -8,6 +9,7 @@ export function ProductDetails() {
   const { id } = useParams(); // vraca id zadnje putanje na koju je stigao u tom trenutku . inace useParams vraca sve parametre iz putanje kao properties jednog objekta.
   const list = useContext(ProductListContext);
   const productDetail = list.find((e) => e.id === id) as IProduct; //uvek tretiraj kao IProduct, u suprotnom moze da bude undefined
+  const [basket, dispatch]=useBasketProvider()
   return (
     <Container>
       <Row>
@@ -43,7 +45,14 @@ export function ProductDetails() {
             </p>
             <p> Product description: {productDetail.description} </p>
 
-            <button> Add to basket </button>
+            <button onClick={e=>dispatch({
+              type:"addItem",
+              productId:productDetail.id,
+              amount:1,
+              color:"white",
+              size: 'S',
+              price: productDetail.price
+            })}> Add to basket </button>
           </Container>
         </Col>
       </Row>

@@ -3,22 +3,22 @@ import { Size } from "../Products/Product";
 import { IBasket } from "./basketStructure";
 export type BasketAction =
   | {
-      type: "addItem";
-      productId: string;
-      amount: number;
-      price: number;
-      size: Size;
-      color: Color;
-    }
-  | { type: "removeItem"; productIndex: number }
+    type: "addItem";
+    productId: string;
+    amount: number;
+    price: number;
+    size: Size;
+    color: Color;
+  }
+  | { type: "removeItem"; productId: string }
   | {
-      type: "editItem";
-      productId: string;
-      amount: number;
-      price: number;
-      size: Size;
-      color: Color;
-    };
+    type: "editItem";
+    productId: string;
+    amount: number;
+    price: number;
+    size: Size;
+    color: Color;
+  };
 
 export function BasketReducer(
   oldBasket: IBasket,
@@ -43,13 +43,23 @@ export function BasketReducer(
       };
     }
     case "removeItem": {
+      let indexOfElToRemove = 0
       return {
-        totalItemsNo:
-          oldBasket.totalItemsNo -
-          oldBasket.items[action.productIndex].productAmount,
-        items: oldBasket.items.filter((e, i) => i !== action.productIndex),
+
+        items: oldBasket.items.filter((e, i) => {
+          if (e.productId !== action.productId) {
+
+            return true
+          }
+          else {
+            indexOfElToRemove = i
+            return false
+          }
+        }),
         totalPrice:
-          oldBasket.totalPrice - oldBasket.items[action.productIndex].price,
+          oldBasket.totalPrice - oldBasket.items[indexOfElToRemove].price,
+
+        totalItemsNo: oldBasket.totalItemsNo - oldBasket.items[indexOfElToRemove].productAmount,
       };
 
       /*  array.filter((e, i) => i !== itemIndex) koristimo filter metodu jer ona stvara novi niz elemenata bez datog elementa. Splice metoda nije mogla da se koristi jer menja postojeci niz, a da ne stvara novi. Da sam koristila to bi znacilo da se u memoriji brise elemenat postojeceg niza, ali posto niz nije nov React ne registruje to kao promenu i ne renderuje */
