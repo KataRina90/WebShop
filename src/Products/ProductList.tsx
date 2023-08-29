@@ -1,7 +1,7 @@
-import { ProductItem } from './ProductItem';
-import {CardGroup} from 'react-bootstrap';
-import { useContext } from 'react';
-import { ProductListContext } from './ProductListContext';
+import { ProductItem } from "./ProductItem";
+import { CardGroup } from "react-bootstrap";
+import { useContext } from "react";
+import { useSearchCriteriaProvider } from "../search/FilteredProductContext";
 /* export interface ProductListProps {
     list: Array <IProduct>
 } */
@@ -16,12 +16,13 @@ import { ProductListContext } from './ProductListContext';
 } */
 
 export function ProductList() {
- const list=useContext(ProductListContext)
-    return (
-        <CardGroup>
-        {list.map (e=> <ProductItem item={e}/> )
-        
-        }
-        </CardGroup>
-    )
+  const [{ filteredProducts }] = useSearchCriteriaProvider();
+
+  return (
+    <CardGroup>
+      {filteredProducts.map((product) => (
+        <ProductItem key={product.id} item={product} />
+      ))}
+    </CardGroup>
+  );
 }

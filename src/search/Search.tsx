@@ -1,16 +1,16 @@
 import Colors from "./Colors";
 import PriceRange from "./PriceRange";
-import SearchCriteriaProvider from "./FilteredProductContext";
+import FilteredProductProvider from "./FilteredProductContext";
 import Sizes from "./Sizes";
 
 export default function SearchCriteria() {
   return (
-    <SearchCriteriaProvider>
+    <FilteredProductProvider>
       <div> Search Criteria</div>
       <PriceRange />
       <Colors />
       <Sizes />
       <button>Search</button>
-    </SearchCriteriaProvider>
+    </FilteredProductProvider>
   );
 }

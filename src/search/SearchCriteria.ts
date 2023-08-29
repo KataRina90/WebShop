@@ -18,15 +18,18 @@ export function getFilteredProducts(
   }
   const filterFunction = (p: IProduct) => {
     // check for the lower range
-    if (criteria.priceRange?.from && criteria.priceRange.from >= p.price)
+    if (criteria.priceRange?.from && criteria.priceRange.from > p.price)
       return false;
     // check for the upper range
-    if (criteria.priceRange?.to && criteria.priceRange.to <= p.price)
+    if (criteria.priceRange?.to && criteria.priceRange.to < p.price)
       return false;
     // check sizes
     if (!isSubArray(criteria.sizes, p.sizes)) return false;
     // check colors
     if (!isSubArray(criteria.colors, p.colors)) return false;
+
+    return true; // Add this line
   };
+
   return products.filter(filterFunction);
 }

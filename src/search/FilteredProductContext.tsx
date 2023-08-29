@@ -29,10 +29,7 @@ export function filteredProductsReducer(
     action
   );
   const newFilteredProducts = getFilteredProducts(newCriteria, products);
-  return {
-    searchCriteria: newCriteria,
-    filteredProducts: newFilteredProducts,
-  };
+  return { searchCriteria: newCriteria, filteredProducts: newFilteredProducts };
 }
 
 const filteredProductsContext =
@@ -41,15 +38,15 @@ const filteredProductsContext =
 const DispatchContext = createContext<React.Dispatch<SearchCriteriaAction>>(
   null as unknown as React.Dispatch<SearchCriteriaAction>
 );
-export default function SearchCriteriaProvider({
+export default function FilteredProductProvider({
   children,
 }: React.PropsWithChildren<unknown>) {
-  const [filteredProductState, dispatchFilteredProducts] = useReducer(
+  const [newFilteredProductState, dispatchFilteredProducts] = useReducer(
     filteredProductsReducer,
     notFilteredProducts
   );
   return (
-    <filteredProductsContext.Provider value={filteredProductState}>
+    <filteredProductsContext.Provider value={newFilteredProductState}>
       <DispatchContext.Provider value={dispatchFilteredProducts}>
         {children}
       </DispatchContext.Provider>

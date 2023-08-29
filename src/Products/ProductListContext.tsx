@@ -15,7 +15,7 @@ export const products: Array<IProduct> = [
     description: "your perfect summer choice",
     imageURL: "Images/white_adidas_01.jpg",
     price: 50,
-    sizes: ["XS", "S", "M"],
+    sizes: ["XS", "S", "M", "XL"],
   },
   {
     id: "002",
