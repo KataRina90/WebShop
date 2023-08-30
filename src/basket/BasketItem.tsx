@@ -35,7 +35,7 @@ export function BasketItem(props: BasketItemProps) {
                         <p> Color: {props.item.color}</p>
                     </Card.Text>
                     <Card.Text>
-                        <input type={'number'}
+                        <input type={'number'} min='0'
                          value={props.item.productAmount}
                         onChange={e=>{dispatch({
                             type:'editItem',
