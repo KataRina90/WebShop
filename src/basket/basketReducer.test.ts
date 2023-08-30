@@ -29,5 +29,32 @@ describe('Basket reducer testing', () => {
                 totalPrice: 100
             } as IBasket
         )
+        expect(basketReducer(newBasket, {
+            type: "addItem",
+            productId: '003',
+            amount: 3,
+            color: 'black',
+            price: 150,
+            size: 'L'
+        })).toEqual(
+            {
+                items: [{
+                    color: 'white',
+                    price: 100,
+                    productAmount: 2,
+                    productId: '001',
+                    size: 'S'
+                },
+                {
+                    color: 'black',
+                    price: 150,
+                    productAmount: 3,
+                    productId: '003',
+                    size: 'L'
+                }],
+                totalItemsNo: 5,
+                totalPrice: 250
+            } as IBasket
+        )
     })
 })
