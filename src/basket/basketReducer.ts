@@ -20,7 +20,7 @@ export type BasketAction =
     color: Color;
   };
 
-export function BasketReducer(
+export function basketReducer(
   oldBasket: IBasket,
   action: BasketAction
 ): IBasket {

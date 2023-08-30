@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { BasketAction, BasketReducer } from "./basketReducer";
+import { BasketAction, basketReducer } from "./basketReducer";
 import { IBasket } from "./basketStructure";
 const emptyBasket: IBasket = { items: [], totalItemsNo: 0, totalPrice: 0 }
 const basketContext = createContext<IBasket>(emptyBasket) //cuvam trenutno stanje korpe
@@ -13,7 +13,7 @@ const dispatchContext = createContext<React.Dispatch<BasketAction>>(null as unkn
 // a koje dobija pozivajuci reducer funkciju. Deca onda imaju pristup tim kontekstima. 
 
 export function BasketProvider({children}:React.PropsWithChildren<unknown>) {
-    const [currentBasket, basketDispatch] = useReducer(BasketReducer, emptyBasket)
+    const [currentBasket, basketDispatch] = useReducer(basketReducer, emptyBasket)
     return (
         <basketContext.Provider value={currentBasket}>
             <dispatchContext.Provider value={basketDispatch}>
