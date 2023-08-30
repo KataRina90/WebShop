@@ -1,4 +1,4 @@
-import { Color } from "react-bootstrap/esm/types";
+import { Color } from "../Products/Product";
 import { Size } from "../Products/Product";
 import { IBasket } from "./basketStructure";
 export type BasketAction =
