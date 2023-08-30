@@ -17,7 +17,6 @@ export type BasketAction =
     amount: number;
     price: number;
     size: Size;
-    color: Color;
   };
 
 export function basketReducer(
@@ -78,7 +77,7 @@ export function basketReducer(
               price: action.price, // uzimam cenu iz akcije jer se promenila
               productAmount: action.amount,
               size: action.size,
-              color: action.color,
+              color:e.color
             };
           } else return e;
         }),
