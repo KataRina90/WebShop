@@ -54,7 +54,7 @@ export function BasketItem(props: BasketItemProps) {
                 <button onClick={e=>{dispatch({
                         type:'removeItem',
                         productId:product.id
-                    })}}> Remove </button>
+                    })}}> Remove Item</button>
 
             </Card>
         )
