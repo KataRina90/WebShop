@@ -14,8 +14,10 @@ export function BasketItem(props: BasketItemProps) {
         navigate('/product/' + id) //go to route for product detail once ready
     }
 
-    const product = getProductByID(props.item.productId)
+    const product = getProductByID(props.item.productId) //kako stizem do props samog proizvoda koji ima jos dodatne props kao npr. brand? Tako sto sam funkciji dodelila return tip IProduct koji to sadrzi
     const [basket,dispatch]=useBasketProvider()
+
+
     if (!product) {
         return (
         <h1> Product not found </h1>

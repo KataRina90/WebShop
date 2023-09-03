@@ -10,7 +10,10 @@ export type BasketAction =
     size: Size;
     color: Color;
   }
-  | { type: "removeItem"; productId: string }
+  | {
+    type: "removeItem";
+    productId: string
+  }
   | {
     type: "editItem";
     productId: string;
@@ -75,9 +78,9 @@ export function basketReducer(
             return {
               productId: e.productId,
               price: action.price, // uzimam cenu iz akcije jer se promenila
-              productAmount: action.amount,
-              size: action.size,
-              color:e.color
+              productAmount: action.amount, // uzimam kolicinu iz akcije jer se promenila
+              size: action.size, // uzimam velicinu iz akcije jer se promenila
+              color: e.color // ne uzimam  iz akcije jer nemam mogucnost promene 
             };
           } else return e;
         }),

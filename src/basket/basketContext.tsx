@@ -11,6 +11,10 @@ const dispatchContext = createContext<React.Dispatch<BasketAction>>(null as unkn
 // Pravimo parent komponentu kojom obuhvatamo decu kojoj treba pristup dispatch funkciji i trenutnom stanju. 
 //Prent komponenta renderuje svoju decu unutar konteksta koje ona formira i setuje kontekstima vrednost na kontekst 1: dispatch funkciju i kontekst 2:trenutno stanje,
 // a koje dobija pozivajuci reducer funkciju. Deca onda imaju pristup tim kontekstima. 
+//zasto mi je trebalo da se cuva dispatch funkcija? 
+/* zato da vise komponenti mogu da trigeruju akciju definisanu reucer funkcijom, a kojom se menja stanje basket-a.
+ npr. i product details komponenta, kao i basket komponenta treba da pristupe dispatch funkciji
+ da bi dodavali (u sljucaju product details), editovali i uklanjali items (basket komp) */
 
 export function BasketProvider({children}:React.PropsWithChildren<unknown>) {
     const [currentBasket, basketDispatch] = useReducer(basketReducer, emptyBasket)
@@ -22,7 +26,7 @@ export function BasketProvider({children}:React.PropsWithChildren<unknown>) {
         </basketContext.Provider>
     )
 }
-
+//stavila basketContext.Provider kao siri u odnosu na dispathContext.provider jer npr. home komponenti treba pristup basketu, a ne i dispatch-u
 export function useBasketProvider () :[IBasket,React.Dispatch <BasketAction>] {
     return [useContext(basketContext), useContext(dispatchContext)]
 }
