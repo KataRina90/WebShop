@@ -12,13 +12,14 @@ export function ProductDetails() {
   const list = useContext(ProductListContext);
   const productDetail = list.find((e) => e.id === id) as IProduct; //uvek tretiraj kao IProduct, u suprotnom moze da bude undefined
   const [basket, dispatch] = useBasketProvider()
-  const optionsSize = productDetail.sizes
   const [chosenSize, setChosenSize] = React.useState('');
   const handleSizeChange = (e: any) => {
     setChosenSize(e.target.value);
   };
-
-  const optionsColor = productDetail.colors
+  const [chosenColor, setChosenColor] = React.useState('');
+  const handleColorChange= (e:any) => {
+    setChosenColor(e.target.value)
+  }
 
   return (
     <Container>
@@ -42,11 +43,22 @@ export function ProductDetails() {
             <h4> {productDetail.name} </h4>
             <p> {productDetail.price} EUR </p>
             <label>
-              Select your size:
+              Select your size: 
               <select value={chosenSize} onChange={handleSizeChange}>
-                {optionsSize.map((size) => (
+                {productDetail.sizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Select color: 
+              <select value={chosenColor} onChange={handleColorChange}>
+                {productDetail.colors.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
                   </option>
                 ))}
               </select>
@@ -64,7 +76,7 @@ export function ProductDetails() {
               type: "addItem",
               productId: productDetail.id,
               amount: 1,
-              color: "white", //ovo promeni kad setujes dropdown selector
+              color: chosenColor,
               size: chosenSize,
               price: productDetail.price
             })}> Add to basket </button>
