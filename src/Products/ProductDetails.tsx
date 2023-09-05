@@ -63,13 +63,7 @@ export function ProductDetails() {
                 ))}
               </select>
             </label>
-
-            <p>
-              {" "}
-              {productDetail.colors.map((e) => (
-                <span> {e}</span>
-              ))}{" "}
-            </p>
+            
             <p> Product description: {productDetail.description} </p>
 
             <button onClick={e => dispatch({
