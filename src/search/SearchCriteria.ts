@@ -14,7 +14,7 @@ export function getFilteredProducts(
   products: IProduct[]
 ) {
   function isSubArray(subArray: string[], superArray: string[]) {
-    return subArray.every((e) => superArray.includes(e));
+    return subArray.every((e) => superArray.includes(e)); //nije mi jasno skroz 
   }
   const filterFunction = (p: IProduct) => {
     // check for the lower range

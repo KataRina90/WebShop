@@ -9,6 +9,7 @@ describe('Basket reducer testing for ADD', () => {
         totalPrice: 0
     }
     test('adding new item to bakset when basket is empty', () => {
+        
         let newBasket = basketReducer(initBasket, {
             type: "addItem",
             productId: '001',
@@ -61,7 +62,7 @@ describe('Basket reducer testing for ADD', () => {
 })
 
 
-describe('Basket reducer testing for REMOVE',()=> {
+describe('Basket reducer testing for REMOVE', () => {
     const initBasket: IBasket = {
         items: [{
             color: 'white',
@@ -80,21 +81,21 @@ describe('Basket reducer testing for REMOVE',()=> {
         totalItemsNo: 5,
         totalPrice: 250
     }
-    test ('removing item from a basket', ()=>{
-        let newBasket=basketReducer(initBasket,{
-          type:'removeItem',
-          productId:'003'
+    test('removing item from a basket', () => {
+        let newBasket = basketReducer(initBasket, {
+            type: 'removeItem',
+            productId: '003'
         })
-    expect (newBasket).toEqual({
-        items: [{
-            color: 'white',
-            price: 100,
-            productAmount: 2,
-            productId: '001',
-            size: 'S'
-        }],
-        totalItemsNo: 2,
-        totalPrice: 100 
-    })
+        expect(newBasket).toEqual({
+            items: [{
+                color: 'white',
+                price: 100,
+                productAmount: 2,
+                productId: '001',
+                size: 'S'
+            }],
+            totalItemsNo: 2,
+            totalPrice: 100
+        })
     })
 }) 
