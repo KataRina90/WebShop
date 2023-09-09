@@ -41,7 +41,7 @@ export function ProductDetails() {
           <Container>
             <h1> {productDetail.brand.brandName} </h1>
             <h4> {productDetail.name} </h4>
-            <p> {productDetail.price} EUR </p>
+            <p> {productDetail.price} EUR </p> 
             <label>
               Select your size: 
               <select value={chosenSize} onChange={handleSizeChange}>
@@ -51,7 +51,7 @@ export function ProductDetails() {
                   </option>
                 ))}
               </select>
-            </label>
+            </label> 
 
             <label>
               Select color: 
@@ -63,9 +63,9 @@ export function ProductDetails() {
                 ))}
               </select>
             </label>
-            
-            <p> Product description: {productDetail.description} </p>
 
+            <p> Product description: {productDetail.description} </p>
+      
             <button onClick={e => dispatch({
               type: "addItem",
               productId: productDetail.id,
