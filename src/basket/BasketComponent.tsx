@@ -4,11 +4,12 @@ import CardHeader from "react-bootstrap/esm/CardHeader";
 import { useNavigate } from "react-router-dom";
 import { useBasketProvider } from "./basketContext";
 import { BasketItem } from "./BasketItem";
+import { Link } from "react-router-dom";
 
 export function BasketComponent() {
     const navigate = useNavigate();
     /*    function showDetails ()  */
-    const [currentBasket,dispatch] = useBasketProvider()
+    const [currentBasket, dispatch] = useBasketProvider()
     return (
         <Row>
             <Col sm={8}>
@@ -19,7 +20,7 @@ export function BasketComponent() {
 
                         {currentBasket.items.map(e => <BasketItem item={e} />)
                         }
-                
+
                     </CardGroup>
                 }
 
@@ -34,7 +35,9 @@ export function BasketComponent() {
                             <p> Delivery: {0} </p>
                             <p> Total with VAT: {currentBasket.totalPrice}  </p>
                         </Card.Text>
-                        <button> CHECKOUT </button>
+                        <button>
+                            <Link to='/checkout'> CHECKOUT </Link>
+                        </button>
                     </Card.Body>
 
 
@@ -43,3 +46,4 @@ export function BasketComponent() {
         </Row>
     )
 }
+
