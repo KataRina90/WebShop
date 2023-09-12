@@ -9,6 +9,7 @@ import SearchCriteria from "../search/Search";
 import { Link } from "react-router-dom";
 import { BasketComponent } from "../basket/BasketComponent";
 import { Checkout } from "../checkout/checkout";
+import { UserDetails } from "../checkout/Form";
 
 export default function App() {
   return (
@@ -77,10 +78,9 @@ export default function App() {
             path="/checkout"
             element={
               <Container>
-                <Col>
+                <Col sm={8}>
                   {" "}
-                  <h1> Thanks for shopping! </h1>
-                  <Checkout/>{" "}
+                  <UserDetails/>{" "}
                 </Col>
               </Container>
             }

@@ -1,7 +1,10 @@
 import { ChangeEventHandler, SetStateAction, useEffect, useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Placeholder, Row } from "react-bootstrap";
 import Select from "react-select"
-
+interface CountryProps {
+    value: string
+    label: string
+}
 export function UserDetails() {
     const [name, setName] = useState("");
     const [address, setAdress] = useState("");
@@ -11,7 +14,7 @@ export function UserDetails() {
         event.preventDefault();
         <h2> Thanks for shopping with us! Soon you will receive an email with your order summary. </h2>
     }
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = useState<CountryProps[]>([]);
     const [selectedCountry, setSelectedCountry] = useState('');
 
     useEffect(() => {
@@ -77,14 +80,20 @@ export function UserDetails() {
             </Row>
             <div>
                 <label htmlFor="country">Select your country:
-                    <Select> 
-                     onChange={handleCountryChange}
-                     placeholder="Select your country">>
-                        <option 
-                        id="country"
-                        value={selectedCountry}
-                       options={countries}
-                       </Select>
+                    <Form.Select aria-label="Default select example" onChange={handleCountryChange}>
+                        {countries.map((country) => (
+                            <option value={country.value}> {country.label} </option>
+                        ))}
+                    </Form.Select>
+
+                   {/*  <Select>
+                        onChange={handleCountryChange}
+                        placeholder="Select your country"
+                        <option
+                            id="country"
+                            value={selectedCountry}
+                            options={countries}
+                       </Select> */}
 
                 </label>
             </div>
