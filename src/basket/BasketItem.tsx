@@ -49,7 +49,7 @@ export function BasketItem(props: BasketItemProps) {
                         > 
     
                         </input>
-                        Price: {props.item.price} EUR
+                        Price: {props.item.amountPrice} EUR
                     </Card.Text>
 
                 </Card.Body>

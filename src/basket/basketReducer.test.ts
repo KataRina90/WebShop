@@ -22,7 +22,7 @@ describe('Basket reducer testing for ADD', () => {
             {
                 items: [{
                     color: 'white',
-                    price: 100,
+                    amountPrice: 100,
                     productAmount: 2,
                     productId: '001',
                     size: 'S'
@@ -42,14 +42,14 @@ describe('Basket reducer testing for ADD', () => {
             {
                 items: [{
                     color: 'white',
-                    price: 100,
+                    amountPrice: 100,
                     productAmount: 2,
                     productId: '001',
                     size: 'S'
                 },
                 {
                     color: 'black',
-                    price: 150,
+                    amountPrice: 150,
                     productAmount: 3,
                     productId: '003',
                     size: 'L'
@@ -66,14 +66,14 @@ describe('Basket reducer testing for REMOVE', () => {
     const initBasket: IBasket = {
         items: [{
             color: 'white',
-            price: 100,
+            amountPrice: 100,
             productAmount: 2,
             productId: '001',
             size: 'S'
         },
         {
             color: 'black',
-            price: 150,
+            amountPrice: 150,
             productAmount: 3,
             productId: '003',
             size: 'L'

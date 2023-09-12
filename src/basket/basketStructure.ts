@@ -3,7 +3,7 @@ import { Size, Color } from "../Products/Product"
 export interface IBasketItem {
     productId:string
     productAmount:number
-    price: number
+    amountPrice: number
     size: Size
     color: Color
 }

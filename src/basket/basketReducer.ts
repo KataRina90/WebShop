@@ -28,22 +28,42 @@ export function basketReducer(
 ): IBasket {
   switch (action.type) {
     case "addItem": {
-      
-      return {
-        ...oldBasket,
-        items: [
-          ...oldBasket.items,
-          {
-            productId: action.productId,
-            productAmount: action.amount,
-            price: action.price,
-            color: action.color,
-            size: action.size,
-          },
-        ],
-        totalItemsNo: oldBasket.totalItemsNo + action.amount,
-        totalPrice: oldBasket.totalPrice + action.price,
-      };
+      let sameProduct = oldBasket.items.find((e) => {
+        if (e.productId === action.productId && e.size === action.size && e.color === action.color)
+          return true
+        else false
+      })
+      if (sameProduct) {
+        return {
+          items: [
+            ...oldBasket.items.filter((e) => e != sameProduct), //filtriram one koji se razlikuju od proizvoda koji sam nasla (kopiram sve one druge)
+            {
+            productId:sameProduct.productId,
+            productAmount:sameProduct.productAmount+action.amount,
+            amountPrice:sameProduct.amountPrice+action.price,
+            color:sameProduct.color, //ili action.color posto je isto
+            size:sameProduct.size,//ili action.size posto je isto
+            }
+          ],
+          totalItemsNo: oldBasket.totalItemsNo + action.amount,
+          totalPrice: oldBasket.totalPrice + action.price
+        }
+      }
+      else
+        return {
+          items: [
+            ...oldBasket.items,
+            {
+              productId: action.productId,
+              productAmount: action.amount,
+              amountPrice: action.price,
+              color: action.color,
+              size: action.size,
+            },
+          ],
+          totalItemsNo: oldBasket.totalItemsNo + action.amount,
+          totalPrice: oldBasket.totalPrice + action.price,
+        };
     }
     case "removeItem": {
       let indexOfElToRemove = 0
@@ -60,7 +80,7 @@ export function basketReducer(
           }
         }),
         totalPrice:
-          oldBasket.totalPrice - oldBasket.items[indexOfElToRemove].price,
+          oldBasket.totalPrice - oldBasket.items[indexOfElToRemove].amountPrice,
 
         totalItemsNo: oldBasket.totalItemsNo - oldBasket.items[indexOfElToRemove].productAmount,
       };
@@ -75,10 +95,10 @@ export function basketReducer(
         items: oldBasket.items.map((e) => {
           if (e.productId === action.productId) {
             oldItemAmount = e.productAmount;
-            oldItemPrice = e.price;
+            oldItemPrice = e.amountPrice;
             return {
               productId: e.productId,
-              price: action.price, // uzimam cenu iz akcije jer se promenila
+              amountPrice: action.price, // uzimam cenu iz akcije jer se promenila
               productAmount: action.amount, // uzimam kolicinu iz akcije jer se promenila
               size: action.size, // uzimam velicinu iz akcije jer se promenila
               color: e.color // ne uzimam  iz akcije jer nemam mogucnost promene 
