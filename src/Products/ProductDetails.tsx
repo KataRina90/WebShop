@@ -12,11 +12,11 @@ export function ProductDetails() {
   const list = useContext(ProductListContext);
   const productDetail = list.find((e) => e.id === id) as IProduct; //uvek tretiraj kao IProduct, u suprotnom moze da bude undefined
   const [basket, dispatch] = useBasketProvider()
-  const [chosenSize, setChosenSize] = React.useState('');
+  const [chosenSize, setChosenSize] = React.useState(productDetail.sizes[0]);
   const handleSizeChange = (e: any) => {
     setChosenSize(e.target.value);
   };
-  const [chosenColor, setChosenColor] = React.useState('');
+  const [chosenColor, setChosenColor] = React.useState(productDetail.colors[0]);
   const handleColorChange= (e:any) => {
     setChosenColor(e.target.value)
   }
