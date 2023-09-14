@@ -8,8 +8,8 @@ import { ProductDetails } from "../Products/ProductDetails";
 import SearchCriteria from "../search/Search";
 import { Link } from "react-router-dom";
 import { BasketComponent } from "../basket/BasketComponent";
-import { Checkout } from "../checkout/checkout";
-import { UserDetails } from "../checkout/Form";
+import { Checkout } from "../checkout/Checkout";
+import { ThankYou } from "../checkout/ThankYou";
 
 export default function App() {
   return (
@@ -80,7 +80,19 @@ export default function App() {
               <Container>
                 <Col sm={8}>
                   {" "}
-                  <UserDetails/>{" "}
+                  <Checkout/>{" "}
+                </Col>
+              </Container>
+            }
+          />
+
+<Route
+            path="/thankyou"
+            element={
+              <Container>
+                <Col sm={8}>
+                  {" "}
+                  <ThankYou/>{" "}
                 </Col>
               </Container>
             }
