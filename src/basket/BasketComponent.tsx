@@ -5,11 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { useBasketProvider } from "./basketContext";
 import { BasketItem } from "./BasketItem";
 import { Link } from "react-router-dom";
+import { IBasket } from "./basketStructure";
 
 export function BasketComponent() {
     const navigate = useNavigate();
     /*    function showDetails ()  */
     const [currentBasket, dispatch] = useBasketProvider()
+    function clear (items:IBasket){
+
+    }
     return (
         <Row>
             <Col sm={8}>
@@ -38,7 +42,14 @@ export function BasketComponent() {
                         <button>
                             <Link to='/checkout'> CHECKOUT </Link>
                         </button>
+                        <button onClick={e=>{
+                            dispatch({
+                                type:"clearItem"
+                            })
+                        }
+                    }> Clear basket </button>
                     </Card.Body>
+                   
 
 
                 </Card>

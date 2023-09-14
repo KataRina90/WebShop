@@ -141,7 +141,7 @@ export function Checkout() {
                 <p> Delivery: {0} EUR</p>
                 <p> Total with VAT: {currentBasket.totalPrice} EUR </p>
                 <button>
-                    <Link to='/thankoyu'> PLACE YOUR ORDER </Link>
+                    <Link to='/thankyou'> PLACE YOUR ORDER </Link>
                 </button>
 
             </Col>

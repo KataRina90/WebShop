@@ -20,7 +20,12 @@ export type BasketAction =
     amount: number;
     price: number;
     size: Size;
-  };
+  }
+  | {
+    type: "clearItem";
+    
+  }
+
 
 export function basketReducer(
   oldBasket: IBasket,
@@ -109,7 +114,13 @@ export function basketReducer(
         totalPrice: oldBasket.totalPrice + (action.price - oldItemPrice),
       };
     }
-
+case "clearItem": {
+return {
+  items:[],
+  totalItemsNo:0,
+  totalPrice:0
+}
+}
     default:
       return oldBasket;
   }

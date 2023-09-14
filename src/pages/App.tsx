@@ -8,8 +8,8 @@ import { ProductDetails } from "../Products/ProductDetails";
 import SearchCriteria from "../search/Search";
 import { Link } from "react-router-dom";
 import { BasketComponent } from "../basket/BasketComponent";
-import { Checkout } from "../checkout/Checkout";
-import { ThankYou } from "../checkout/ThankYou";
+import { Checkout } from "../Ordering/Checkout";
+import { ThankYou } from "../Ordering/ThankYou";
 
 export default function App() {
   return (
