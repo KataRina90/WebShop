@@ -10,12 +10,17 @@ export function UserDetails() {
     const [address, setAdress] = useState("");
     const [plz, setPlz] = useState("");
     const [city, setCity] = useState("");
+    const [card, setCard]=useState("");
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        <h2> Thanks for shopping with us! Soon you will receive an email with your order summary. </h2>
+        /*    <h2> Thanks for shopping with us! Soon you will receive an email with your order summary. </h2> */
     }
-    const [countries, setCountries] = useState<CountryProps[]>([]);
-    const [selectedCountry, setSelectedCountry] = useState('');
+    const [countries, setCountries] = useState<CountryProps[]>([])
+    const [selectedCountry, setSelectedCountry] = useState('')
+    const [selectedPay, setSelectedPay]=useState('')
+    const handlePaymentChange = (selectedOption: any) => {
+        setSelectedPay(selectedOption);
+    };
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -43,21 +48,22 @@ export function UserDetails() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label> Your first and last name:
+            <h4> Delivery address </h4>
+            <label> Recepeint's first and last name:
                 <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
-            </label>
+            </label> <br />
 
-            <label> Your Adress:
+            <label> Street and number:
                 <input
                     type="text"
                     value={address}
                     onChange={(e) => setAdress(e.target.value)}
                 />
-            </label>
+            </label> <br />
             <Row>
                 <Col sm={4}>
                     <label> PLZ:
@@ -69,72 +75,45 @@ export function UserDetails() {
                     </label>
                 </Col>
                 <Col sm={8}>
+
                     <label> City:
                         <input
                             type="text"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                         />
-                    </label>
+                    </label> <br />
                 </Col>
             </Row>
+
             <div>
-                <label htmlFor="country">Select your country:
+                <label htmlFor="country">Select country:
                     <Form.Select aria-label="Default select example" onChange={handleCountryChange}>
+                        <option> -- </option>
                         {countries.map((country) => (
                             <option value={country.value}> {country.label} </option>
                         ))}
-                    </Form.Select>
-
-                   {/*  <Select>
-                        onChange={handleCountryChange}
-                        placeholder="Select your country"
-                        <option
-                            id="country"
-                            value={selectedCountry}
-                            options={countries}
-                       </Select> */}
-
+                    </Form.Select> <br/>
                 </label>
             </div>
+
+            <h4> Payment method </h4>
+            <label htmlFor="payment"> Choose your payment method: 
+            <Form.Select aria-label="Default select example" onChange={handlePaymentChange}> 
+            <option> -- </option>
+            <option value="card"> Credit / Debit Card</option>
+            <option value="paypal"> PayPal </option>
+            </Form.Select>
+            </label> <br/> 
+            <label> Enter your card number:  
+                <input
+                    type= "number"
+                    value={card}
+                    onChange={(e) => setCard(e.target.value)}
+                />
+            </label>
+          
 
         </form>
     )
 }
-
-/* function MyForm() {
-    const [inputs, setInputs] = useState({});
-  
-    const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
-    }
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(inputs);
-    }
-  
-    return (
-      <form onSubmit={handleSubmit}>
-        <label>Enter your name:
-        <input 
-          type="text" 
-          name="username" 
-          value={inputs.username || ""} 
-          onChange={handleChange}
-        />
-        </label>
-        <label>Enter your age:
-          <input 
-            type="number" 
-            name="age" 
-            value={inputs.age || ""} 
-            onChange={handleChange}
-          />
-          </label>
-          <input type="submit" />
-      </form>
-    )
-  } */
