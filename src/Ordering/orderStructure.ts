@@ -8,5 +8,5 @@ export interface IOrder {
 }
 
 export interface IOrderList {
-    orders:IOrder
+    orders:IOrder[]
 }
