@@ -12,7 +12,7 @@ const dispatchContext = createContext<React.Dispatch<BasketAction>>(null as unkn
 //Prent komponenta renderuje svoju decu unutar konteksta koje ona formira i setuje kontekstima vrednost na kontekst 1: dispatch funkciju i kontekst 2:trenutno stanje,
 // a koje dobija pozivajuci reducer funkciju. Deca onda imaju pristup tim kontekstima. 
 //zasto mi je trebalo da se cuva dispatch funkcija? 
-/* zato da vise komponenti mogu da trigeruju akciju definisanu reucer funkcijom, a kojom se menja stanje basket-a.
+/* zato da vise komponenti mogu da trigeruju akciju definisanu reducer funkcijom, a kojom se menja stanje basket-a.
  npr. i product details komponenta, kao i basket komponenta treba da pristupe dispatch funkciji
  da bi dodavali (u sljucaju product details), editovali i uklanjali items (basket komp) */
 

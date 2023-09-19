@@ -1,10 +1,20 @@
-import { IBasket } from "../basket/basketStructure";
+import { Size, Color } from "../Products/Product"
+
+interface IOrderItem {
+    productId:string
+    productAmount:number
+    amountPrice: number
+    size: Size
+    color: Color
+}
 
 export interface IOrder {
-    orderItems: IBasket,
+    orderNo: number
+    orderDate:Date
+    orderItems: IOrderItem[], 
     totalOrderItemsNo:number,
     totalOrderPrice: number
-    orderNo: number
+   
 }
 
 export interface IOrderList {

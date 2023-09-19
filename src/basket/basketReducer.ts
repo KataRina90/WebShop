@@ -23,7 +23,7 @@ export type BasketAction =
   }
   | {
     type: "clearItem";
-    
+
   }
 
 
@@ -43,11 +43,11 @@ export function basketReducer(
           items: [
             ...oldBasket.items.filter((e) => e != sameProduct), //filtriram one koji se razlikuju od proizvoda koji sam nasla (kopiram sve one druge)
             {
-            productId:sameProduct.productId,
-            productAmount:sameProduct.productAmount+action.amount,
-            amountPrice:sameProduct.amountPrice+action.price,
-            color:sameProduct.color, //ili action.color posto je isto
-            size:sameProduct.size,//ili action.size posto je isto
+              productId: sameProduct.productId,
+              productAmount: sameProduct.productAmount + action.amount,
+              amountPrice: sameProduct.amountPrice + action.price,
+              color: sameProduct.color, //ili action.color posto je isto
+              size: sameProduct.size,//ili action.size posto je isto
             }
           ],
           totalItemsNo: oldBasket.totalItemsNo + action.amount,
@@ -114,13 +114,13 @@ export function basketReducer(
         totalPrice: oldBasket.totalPrice + (action.price - oldItemPrice),
       };
     }
-case "clearItem": {
-return {
-  items:[],
-  totalItemsNo:0,
-  totalPrice:0
-}
-}
+    case "clearItem": {
+      return {
+        items: [],
+        totalItemsNo: 0,
+        totalPrice: 0
+      }
+    }
     default:
       return oldBasket;
   }
