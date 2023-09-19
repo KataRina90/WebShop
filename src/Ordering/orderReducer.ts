@@ -4,29 +4,23 @@ import { IOrderList } from "./orderStructure";
 export type OrderAction =
     | {
         type: "createOrder",
-        orderItems: IBasket;
-        totalOrderItemsNo: number, 
-        totalOrderPrice: number
-        orderNo: number,
-        orderDate: Date
+        basket:IBasket ;
 
     }
 
     | {
-        type: "deleteOrder",
-        orderNo: number,
-        noToDelete: number
+        type: "deleteUnpaidOrder", //odnosi se na brisanje ordera koji nije placen (kada se napusti forma za placanje)
+        orderNo: number
     }
     | {
         type: "payOrder"
-        orderNo: number,
-        totalOrderPrice: number
+        orderNo: number
     }
 
 export function orderReducer(
     oldOrderList: IOrderList,
     action: OrderAction
-) {
+):IOrderList {
     function generateRandomNo(): number {
         let minm = 100000
         let maxm = 999999
@@ -44,29 +38,44 @@ export function orderReducer(
     } 
    
     switch (action.type) {
-        case "deleteOrder": {
+        case "deleteUnpaidOrder": {
             return {
                 orders: oldOrderList.orders.filter((e) => {
-                    if (e.orderNo != action.orderNo) {
+                    if (e.orderNo != action.orderNo && e.paid===true) {
                         return true
                     }
                     else return false
-                }),
-                totalOrdersNo: oldOrderList.totalOrdersNo - action.noToDelete
+                })
             }
+
         }
+
+
         case "createOrder": {
 
             return {
-                orders: [...oldOrderList.orders, {
-                    orderDate: action.orderDate,
-                    orderItems: action.orderItems,
-                    orderNo: generateRandomNo,
-                    totalOrderItemsNo: action.totalOrderItemsNo,
-                    totalOrderPrice: action.totalOrderPrice
-                }],
-                totalOrdersNo: oldOrderList.totalOrdersNo + 1
+            orders:[
+                ...oldOrderList.orders,
+                {
+                   orderNo: generateRandomNo(),
+                   orderDate: Date(),
+                   paid:false,
+                   totalOrderItemsNo: action.basket.totalItemsNo,
+                   totalOrderPrice:action.basket.totalPrice,
+                   orderItems: action.basket.items.map((e)=>{
+                    return {
+                        productId:e.productId,
+                        amountPrice:e.amountPrice,
+                        color:e.color,
+                        productAmount:e.productAmount,
+                        size:e.size
+                    }
+                   })
+                }
+            ]
             }
         }
+        default: return oldOrderList
     }
 }
+

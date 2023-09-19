@@ -10,10 +10,11 @@ interface IOrderItem {
 
 export interface IOrder {
     orderNo: number
-    orderDate:Date
+    orderDate:string
     orderItems: IOrderItem[], 
     totalOrderItemsNo:number,
-    totalOrderPrice: number
+    totalOrderPrice: number,
+    paid: boolean
    
 }
 
