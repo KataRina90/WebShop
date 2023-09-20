@@ -21,7 +21,7 @@ export function orderReducer(
     oldOrderList: IOrderList,
     action: OrderAction
 ): IOrderList {
-    function generateRandomNo(): number {
+/*     function generateRandomNo(): number {
         let minm = 100000
         let maxm = 999999
         let randomNo = Math.floor(Math
@@ -35,7 +35,7 @@ export function orderReducer(
             return generateRandomNo()
         else return randomNo
 
-    }
+    } */
 
     switch (action.type) {
         case "deleteUnpaidOrder": {
@@ -78,7 +78,7 @@ export function orderReducer(
                 orders: [
                     ...oldOrderList.orders,
                     {
-                        orderNo: generateRandomNo(),
+                        orderNo: 891567,
                         orderDate: Date(),
                         paid: false,
                         totalOrderItemsNo: action.basket.totalItemsNo,

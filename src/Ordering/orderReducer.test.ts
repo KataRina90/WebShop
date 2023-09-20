@@ -63,9 +63,10 @@ describe('Order reducer testing for new order', () => {
             }
             ],
             //proveri da li moze neki property da bude izostavljen sa toEqual
-            paid:true,
+            paid:false,
             totalOrderItemsNo:3,
-            totalOrderPrice:450
+            totalOrderPrice:450,
+            orderNo:891567
     
     }
     

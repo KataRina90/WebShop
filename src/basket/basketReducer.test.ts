@@ -89,13 +89,13 @@ describe('Basket reducer testing for REMOVE', () => {
         expect(newBasket).toEqual({
             items: [{
                 color: 'white',
-                price: 100,
+                amountPrice:100,
                 productAmount: 2,
                 productId: '001',
                 size: 'S'
             }],
             totalItemsNo: 2,
             totalPrice: 100
-        })
+        } as IBasket)
     })
 }) 
