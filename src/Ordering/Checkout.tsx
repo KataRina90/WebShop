@@ -11,7 +11,7 @@ interface CountryProps {
 export function Checkout() {
     const [name, setName] = useState("");
     const [address, setAdress] = useState("");
-    const [plz, setPlz] = useState("");
+    const [postcode, setPostcode] = useState("");
     const [city, setCity] = useState("");
     const [card, setCard] = useState("");
     const handleSubmit = (event: any) => {
@@ -75,8 +75,8 @@ export function Checkout() {
                             <label> PLZ:
                                 <input
                                     type="number"
-                                    value={plz}
-                                    onChange={(e) => setPlz(e.target.value)}
+                                    value={postcode}
+                                    onChange={(e) => setPostcode(e.target.value)}
                                 />
                             </label>
                         </Col>
