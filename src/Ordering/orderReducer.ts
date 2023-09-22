@@ -56,7 +56,7 @@ export function orderReducer(
 
             return {
                 orders: [
-                    ...oldOrderList.orders,
+                    ...oldOrderList.orders, // kopiram niz u novi niz
                     {
                         orderNo: ++counter, // isto kao counter=counter+1; orderNo=counter;
                         //orderNo: counter++// isto kao orderNo=counter; counter=counter+1 Pitanje je dakle u kom se trenutku uzima vrednost countera 
@@ -78,6 +78,23 @@ export function orderReducer(
                 ]
             }
         }
+
+        case "payOrder": {
+        return {
+            orders: oldOrderList.orders.map ((e)=> {
+                if (e.orderNo!==action.orderNo) {
+                    return e;
+                }
+                else {
+                return {...e, 
+                    deliveryAdress:{...e.deliveryAdress},
+                    orderItems: [...e.orderItems],
+                    paid:true} //ovde sam kopirala objekat i promenila mu property a gore u CreateOrder sam kopirala ceo niz u novi niz i dodala novi element tog novog niza
+                }
+            })
+        }
+        }
+
         default: return oldOrderList
     }
 }
