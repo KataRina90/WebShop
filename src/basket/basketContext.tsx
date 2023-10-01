@@ -14,7 +14,7 @@ const dispatchContext = createContext<React.Dispatch<BasketAction>>(null as unkn
 //zasto mi je trebalo da se cuva dispatch funkcija? 
 /* zato da vise komponenti mogu da trigeruju akciju definisanu reducer funkcijom, a kojom se menja stanje basket-a.
  npr. i product details komponenta, kao i basket komponenta treba da pristupe dispatch funkciji
- da bi dodavali (u sljucaju product details), editovali i uklanjali items (basket komp) */
+ da bi dodavali (u slucaju product details), editovali i uklanjali items (basket komp) */
 
 export function BasketProvider({children}:React.PropsWithChildren<unknown>) {
     const [currentBasket, basketDispatch] = useReducer(basketReducer, emptyBasket)

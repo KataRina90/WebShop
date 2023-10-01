@@ -1,6 +1,6 @@
 import { Size, Color } from "../Products/Product"
 
-interface IOrderItem {
+export interface IOrderItem {
     productId: string
     productAmount: number
     amountPrice: number
@@ -26,6 +26,14 @@ export interface IOrder {
     paid: boolean
     deliveryAdress: IDeliveryAddress
 
+
+}
+
+export interface IOrderDetails {
+    orderItems: IOrderItem[],
+    totalOrderItemsNo: number,
+    totalOrderPrice: number,
+    deliveryAdress: IDeliveryAddress
 
 }
 

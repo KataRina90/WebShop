@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext,useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useOrderProvider } from "./orderContext";
 import { useBasketProvider } from "../basket/basketContext";
 import { BasketItem } from "../basket/BasketItem"
 interface CountryProps {
@@ -24,7 +25,7 @@ export function Checkout() {
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-    const [currentBasket, dispatch] = useBasketProvider();
+   const [currentOrder, dispatch] = useOrderProvider(); 
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -55,7 +56,7 @@ export function Checkout() {
             <Col sm={8}>
                 <form onSubmit={handleSubmit}>
                     <h4> Delivery address </h4>
-                    <label> Recepeint's first and last name:
+                    <label> Recepient's first and last name:
                         <input
                             type="text"
                             value={name}
@@ -126,13 +127,13 @@ export function Checkout() {
             <Col sm={4}>
                 <h4> Review your order </h4> <br />
 
-                {currentBasket.items.length === 0 ?
-                    <h4> There are no items in your basket </h4>
+                {currentOrder.orders.length === 0 ?
+                    <h4> Hmmm...there seem to be no items in your basket </h4>
                     :
+                    //zasto ovde dole ne moze da mi renderuje currentOrder samo?Treba  mi da vidim sta hocu da narucim
                     <div>
 
-                        {currentBasket.items.map(e => <BasketItem item={e} />)
-                        }
+                        {currentOrder.orders.map(e=> OrderDetails)} 
                     </div>
 
                 }
