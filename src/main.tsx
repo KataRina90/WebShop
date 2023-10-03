@@ -6,15 +6,19 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { BasketProvider } from "./basket/basketContext";
 import FilteredProductProvider from "./search/FilteredProductContext";
+import { OrderProvider } from "./Ordering/orderContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <BasketProvider>
         <FilteredProductProvider>
-          <App />
+          <OrderProvider>
+            <App />
+          </OrderProvider>
         </FilteredProductProvider>
       </BasketProvider>
+
     </BrowserRouter>
   </React.StrictMode>
 );

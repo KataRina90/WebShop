@@ -22,21 +22,7 @@ export function orderReducer(
     oldOrderList: IOrderList,
     action: OrderAction
 ): IOrderList {
-    /*     function generateRandomNo(): number {
-            let minm = 100000
-            let maxm = 999999
-            let randomNo = Math.floor(Math
-                .random() * (maxm - minm + 1)) + minm
-            let sameOrder = oldOrderList.orders.find((e) => {
-                if (e.orderNo === randomNo)
-                    return true
-                else false
-            })
-            if (sameOrder)
-                return generateRandomNo()
-            else return randomNo
-    
-        } */
+
 
     switch (action.type) {
         case "deleteUnpaidOrder": {
@@ -99,3 +85,20 @@ export function orderReducer(
     }
 }
 
+
+
+    /*     function generateRandomNo(): number {
+            let minm = 100000
+            let maxm = 999999
+            let randomNo = Math.floor(Math
+                .random() * (maxm - minm + 1)) + minm
+            let sameOrder = oldOrderList.orders.find((e) => {
+                if (e.orderNo === randomNo)
+                    return true
+                else false
+            })
+            if (sameOrder)
+                return generateRandomNo()
+            else return randomNo
+    
+        } */

@@ -57,5 +57,5 @@ export const ProductListContext = createContext<IProduct[]>(products);
 // kontekst je konktejner koji cuva neke podatke. hoces da ti podaci budu dostupni nekim komponentama - napravi se kontejner
 
 export function getProductByID(id: string): IProduct | undefined {
-  return products.find((p) => p.id === id);
+  return products.find((p) => p.id === id) ;
 }

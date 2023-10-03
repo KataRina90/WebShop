@@ -1,9 +1,9 @@
 import { useEffect, useState,useContext,useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { ProductItem } from "../Products/ProductItem";
 import { useOrderProvider } from "./orderContext";
-import { useBasketProvider } from "../basket/basketContext";
-import { BasketItem } from "../basket/BasketItem"
+import { OrderDetails } from "./OrderDetails";
 interface CountryProps {
     value: string
     label: string
@@ -25,7 +25,10 @@ export function Checkout() {
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-   const [currentOrder, dispatch] = useOrderProvider(); 
+   const [allOrders, dispatch] = useOrderProvider(); 
+
+   
+    const currentOrder=allOrders.orders.length> 0? allOrders.orders[allOrders.orders.length-1]:null; //displaying the last created order
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -127,23 +130,11 @@ export function Checkout() {
             <Col sm={4}>
                 <h4> Review your order </h4> <br />
 
-                {currentOrder.orders.length === 0 ?
-                    <h4> Hmmm...there seem to be no items in your basket </h4>
-                    :
-                    //zasto ovde dole ne moze da mi renderuje currentOrder samo?Treba  mi da vidim sta hocu da narucim
-                    <div>
-
-                        {currentOrder.orders.map(e=> OrderDetails)} 
-                    </div>
-
+                {
+                    currentOrder !== null &&   < OrderDetails orderdetails={currentOrder} />
                 }
-                <br />
-                <p> Subtotal: {currentBasket.totalPrice} EUR </p>
-                <p> Delivery: {0} EUR</p>
-                <p> Total with VAT: {currentBasket.totalPrice} EUR </p>
-                <button>
-                    <Link to='/thankyou'> PLACE YOUR ORDER </Link>
-                </button>
+             
+               
 
             </Col>
         </Row>

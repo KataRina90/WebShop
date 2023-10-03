@@ -28,14 +28,14 @@ export interface IOrder {
 
 
 }
-
+/* 
 export interface IOrderDetails {
     orderItems: IOrderItem[],
     totalOrderItemsNo: number,
     totalOrderPrice: number,
     deliveryAdress: IDeliveryAddress
 
-}
+} */
 
 export interface IOrderList {
     orders: IOrder[]

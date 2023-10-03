@@ -6,11 +6,16 @@ import { useBasketProvider } from "./basketContext";
 import { BasketItem } from "./BasketItem";
 import { Link } from "react-router-dom";
 import { IBasket } from "./basketStructure";
+import { useOrderProvider } from "../Ordering/orderContext";
 
 export function BasketComponent() {
     const navigate = useNavigate();
     /*    function showDetails ()  */
     const [currentBasket, dispatch] = useBasketProvider()
+    const [currentOrder,dispatchOrder]=useOrderProvider()
+
+
+
     function clear (items:IBasket){
 
     }
@@ -39,8 +44,23 @@ export function BasketComponent() {
                             <p> Delivery: {0} </p>
                             <p> Total with VAT: {currentBasket.totalPrice}  </p>
                         </Card.Text>
-                        <button>
-                            <Link to='/checkout'> CHECKOUT </Link>
+                        <button onClick={e=>
+                        {
+                            dispatchOrder({
+                                type:"createOrder",
+                                basket:currentBasket,
+                                deliveryAdress:{
+                                    city:"",
+                                    country:"",
+                                    postcode:0,
+                                    recepientName:"",
+                                    streetName:"",
+                                    streetNo:""
+                                }
+                            })
+                        navigate("/checkout")
+                    }}>
+                             CHECKOUT
                         </button>
                         <button onClick={e=>{
                             dispatch({
