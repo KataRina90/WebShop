@@ -18,9 +18,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             <p> Subtotal: {props.orderdetails.totalOrderPrice} EUR </p>
             <p> Delivery: {0} EUR</p>
             <p> Total with VAT: {props.orderdetails.totalOrderPrice} EUR </p>
-            <button>
-                <Link to='/thankyou'> PLACE YOUR ORDER </Link>
-            </button>
+            
         </>
     )
 }
@@ -39,10 +37,10 @@ function ItemDetails(props: itemDetailsProps) {
                     <Card.Title>
                         {product!.name}
                         <Card.Text>
-                            Size: {props.item.size}
-                            Color: {props.item.color}
-                            Amount: {props.item.productAmount}
-                            Price: {props.item.amountPrice} EUR
+                            Size: {props.item.size} <br/>
+                            Color: {props.item.color} <br/>
+                            Amount: {props.item.productAmount} <br/>
+                            Price: {props.item.amountPrice} EUR <br/>
                         </Card.Text>
                     </Card.Title>
                 </Card.Body>

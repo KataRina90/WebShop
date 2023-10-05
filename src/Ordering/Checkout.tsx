@@ -1,6 +1,7 @@
 import { useEffect, useState,useContext,useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useBasketProvider } from "../basket/basketContext";
 import { ProductItem } from "../Products/ProductItem";
 import { useOrderProvider } from "./orderContext";
 import { OrderDetails } from "./OrderDetails";
@@ -25,10 +26,10 @@ export function Checkout() {
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-   const [allOrders, dispatch] = useOrderProvider(); 
-
-   
-    const currentOrder=allOrders.orders.length> 0? allOrders.orders[allOrders.orders.length-1]:null; //displaying the last created order
+    const navigate=useNavigate();
+   const [allOrders, dispatchOrder] = useOrderProvider(); 
+   const currentOrder=allOrders.orders.length> 0? allOrders.orders[allOrders.orders.length-1]:null; //displaying the last created order
+   const [currentBasket, dispatchBasket]=useBasketProvider();
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -134,7 +135,21 @@ export function Checkout() {
                     currentOrder !== null &&   < OrderDetails orderdetails={currentOrder} />
                 }
              
-               
+             <button onClick= {e=> {
+                dispatchOrder ({
+                    type:"payOrder",
+                    orderNo:currentOrder!.orderNo
+                })
+
+                dispatchBasket({
+                    type:"clearItem"
+                })
+
+                navigate("/thankyou")
+     
+             }}>
+               PLACE ORDER 
+            </button>
 
             </Col>
         </Row>
