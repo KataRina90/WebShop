@@ -2,7 +2,6 @@ import { useEffect, useState,useContext,useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useBasketProvider } from "../basket/basketContext";
-import { ProductItem } from "../Products/ProductItem";
 import { useOrderProvider } from "./orderContext";
 import { OrderDetails } from "./OrderDetails";
 interface CountryProps {
