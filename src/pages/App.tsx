@@ -13,8 +13,11 @@ import { ThankYou } from "../Ordering/ThankYou";
 
 export default function App() {
   return (
+    //sx example below
+    
     <Container>
-      <Row>
+      <Row sx={HeaderStyle
+     } className="navbar-main">
         <Col sm={1}>
           {" "}
           <Link to={"/"}> Home </Link>
@@ -109,4 +112,9 @@ export default function App() {
       </Row>
     </Container>
   );
+}
+
+
+const HeaderStyle={
+  padding:'10px'
 }

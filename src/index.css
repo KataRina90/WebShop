@@ -69,6 +69,12 @@ body {
   font-weight: bold;
 }
 
+
+
+.navbar-main {
+  background-color: #131921;
+}
+
 /* button {
   border-radius: 8px;
   border: 1px solid transparent;

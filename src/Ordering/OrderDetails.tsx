@@ -15,9 +15,21 @@ export function OrderDetails(props: OrderDetailsProps) {
                 props.orderdetails.orderItems.map(e => <ItemDetails item={e} />)
             }
             <br />
-            <p> Subtotal: {props.orderdetails.totalOrderPrice} EUR </p>
-            <p> Delivery: {0} EUR</p>
-            <p> Total with VAT: {props.orderdetails.totalOrderPrice} EUR </p>
+            <p> Subtotal: {props.orderdetails.totalOrderPrice} EUR </p> <br/>
+            <p> Delivery: {0} EUR</p> <br/> 
+            <p> Total with VAT: {props.orderdetails.totalOrderPrice} EUR </p> <br/>
+            
+        </>
+    )
+}
+
+export function OrderDetailsThankYou(props: OrderDetailsProps) {
+    return (
+        <>
+            {
+                props.orderdetails.orderItems.map(e => <ItemDetails item={e} />)
+            }
+            <br />
             
         </>
     )
