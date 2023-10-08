@@ -12,71 +12,68 @@ export function BasketComponent() {
     const navigate = useNavigate();
     /*    function showDetails ()  */
     const [currentBasket, dispatch] = useBasketProvider()
-    const [currentOrder,dispatchOrder]=useOrderProvider()
+    const [currentOrder, dispatchOrder] = useOrderProvider()
 
 
 
-    function clear (items:IBasket){
+    function clear(items: IBasket) {
 
     }
     return (
         <Row>
-            <Col sm={8}>
-                {currentBasket.items.length === 0 ?
-                    <h1>No Items</h1>
-                    :
-                    <CardGroup>
+            {currentBasket.items.length === 0 ?
+                <h3> Tere are no items in your basket </h3>
+                :
+                <div>
+                    <Col sm={8}>
 
-                        {currentBasket.items.map(e => <BasketItem item={e} />)
-                        }
+                        <CardGroup>
 
-                    </CardGroup>
-                }
+                            {currentBasket.items.map(e => <BasketItem item={e} />)
+                            }
 
-            </Col>
-            <Col sm={4}>
-                <Card>
-                    <CardHeader> Total </CardHeader>
-                    {currentBasket.items.length === 0 ?
-                    <h1>No Items</h1>
-                    :
-                    <Card.Body>
-                        <Card.Text>
-                            <p> Amount: {currentBasket.totalItemsNo} </p>
-                            <p> Subtotal: {currentBasket.totalPrice} </p>
-                            <p> Delivery: {0} </p>
-                            <p> Total with VAT: {currentBasket.totalPrice}  </p>
-                        </Card.Text>
-                        <button onClick={e=>
-                        {
-                            dispatchOrder({
-                                type:"createOrder",
-                                basket:currentBasket,
-                                deliveryAdress:{
-                                    city:"",
-                                    country:"",
-                                    postcode:0,
-                                    recepientName:"",
-                                    streetName:"",
-                                    streetNo:""
+                        </CardGroup>
+                    </Col>
+                    <Col sm={4}>
+                        <Card>
+                            <Card.Body>
+                                <CardHeader> Total </CardHeader>
+                                <Card.Text>
+                                    <p> Amount: {currentBasket.totalItemsNo} </p>
+                                    <p> Subtotal: {currentBasket.totalPrice} </p>
+                                    <p> Delivery: {0} </p>
+                                    <p> Total with VAT: {currentBasket.totalPrice}  </p>
+                                </Card.Text>
+                                <button onClick={e => {
+                                    dispatchOrder({
+                                        type: "createOrder",
+                                        basket: currentBasket,
+                                        deliveryAdress: {
+                                            city: "",
+                                            country: "",
+                                            postcode: 0,
+                                            recepientName: "",
+                                            streetName: "",
+                                            streetNo: ""
+                                        }
+                                    })
+                                    navigate("/checkout")
+                                }}>
+                                    CHECKOUT
+                                </button>
+                                <button onClick={e => {
+                                    dispatch({
+                                        type: "clearItem"
+                                    })
                                 }
-                            })
-                        navigate("/checkout")
-                    }}>
-                             CHECKOUT
-                        </button>
-                        <button onClick={e=>{
-                            dispatch({
-                                type:"clearItem"
-                            })
-                        }
-                    }> Clear basket </button>
-                    </Card.Body> }
-                   
+                                }> Clear basket </button>
+                            </Card.Body>
 
 
-                </Card>
-            </Col>
+
+                        </Card>
+                    </Col>
+                </div>}
         </Row>
     )
 }
