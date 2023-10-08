@@ -37,6 +37,9 @@ export function BasketComponent() {
             <Col sm={4}>
                 <Card>
                     <CardHeader> Total </CardHeader>
+                    {currentBasket.items.length === 0 ?
+                    <h1>No Items</h1>
+                    :
                     <Card.Body>
                         <Card.Text>
                             <p> Amount: {currentBasket.totalItemsNo} </p>
@@ -68,7 +71,7 @@ export function BasketComponent() {
                             })
                         }
                     }> Clear basket </button>
-                    </Card.Body>
+                    </Card.Body> }
                    
 
 

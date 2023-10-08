@@ -1,4 +1,4 @@
-import { useEffect, useState,useContext,useReducer } from "react";
+import { useEffect, useState, useContext, useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useBasketProvider } from "../basket/basketContext";
@@ -15,20 +15,56 @@ export function Checkout() {
     const [postcode, setPostcode] = useState("");
     const [city, setCity] = useState("");
     const [card, setCard] = useState("");
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        /*    <h2> Thanks for shopping with us! Soon you will receive an email with your order summary. </h2> */
-    }
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedCountry, setSelectedCountry] = useState('')
     const [selectedPay, setSelectedPay] = useState('') //da li mi treba da se cuva selekotvano stanje? verovatno da, za placanje dalje.
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-    const navigate=useNavigate();
-   const [allOrders, dispatchOrder] = useOrderProvider(); 
-   const currentOrder=allOrders.orders.length> 0? allOrders.orders[allOrders.orders.length-1]:null; //displaying the last created order
-   const [currentBasket, dispatchBasket]=useBasketProvider();
+
+    const validationRules = {
+        name: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
+        address: /^.{5,}$/, // Minimum 5 characters
+        city: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
+        postcode: /^[0-9]+$/, // Only numbers
+        email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Email format
+        card: /^[0-9]+$/
+    };
+    const [formError, setFormError] = useState("")
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        if (
+            !name ||
+            !address ||
+            !postcode ||
+            !city ||
+            !card ||
+            !selectedCountry ||
+            !selectedPay
+        ) {
+            alert("Please fill out all fields.");
+        }
+        else {
+            dispatchOrder({
+                type: "payOrder",
+                orderNo: currentOrder!.orderNo
+            })
+
+            dispatchBasket({
+                type: "clearItem"
+            })
+            navigate("/thankyou")
+        }
+
+
+
+    }
+
+    const navigate = useNavigate();
+    const [allOrders, dispatchOrder] = useOrderProvider();
+    const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
+    const [currentBasket, dispatchBasket] = useBasketProvider();
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -64,6 +100,7 @@ export function Checkout() {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            required
                         />
                     </label> <br />
 
@@ -72,6 +109,7 @@ export function Checkout() {
                             type="text"
                             value={address}
                             onChange={(e) => setAdress(e.target.value)}
+                            required
                         />
                     </label> <br />
                     <Row>
@@ -81,6 +119,7 @@ export function Checkout() {
                                     type="number"
                                     value={postcode}
                                     onChange={(e) => setPostcode(e.target.value)}
+                                    required
                                 />
                             </label>
                         </Col>
@@ -91,6 +130,7 @@ export function Checkout() {
                                     type="text"
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
+                                    required
                                 />
                             </label> <br />
                         </Col>
@@ -120,10 +160,10 @@ export function Checkout() {
                             type="number"
                             value={card}
                             onChange={(e) => setCard(e.target.value)}
+                            required
                         />
                     </label>
-
-
+                    {/*         <button type="submit" onClick={handleSubmit}> Submit </button> */}
                 </form>
             </Col>
 
@@ -131,24 +171,12 @@ export function Checkout() {
                 <h4> Review your order </h4> <br />
 
                 {
-                    currentOrder !== null &&   < OrderDetails orderdetails={currentOrder} />
+                    currentOrder !== null && < OrderDetails orderdetails={currentOrder} />
                 }
-             
-             <button onClick= {e=> {
-                dispatchOrder ({
-                    type:"payOrder",
-                    orderNo:currentOrder!.orderNo
-                })
 
-                dispatchBasket({
-                    type:"clearItem"
-                })
-
-                navigate("/thankyou")
-     
-             }}>
-               PLACE ORDER 
-            </button>
+                <button onClick={handleSubmit}>
+                    PLACE ORDER
+                </button>
 
             </Col>
         </Row>
