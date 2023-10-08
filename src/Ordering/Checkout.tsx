@@ -135,7 +135,7 @@ export function Checkout() {
                             </label> <br />
                         </Col>
                     </Row>
-
+                    {/* ovde samo proveri da li input field ima value, odnosno da li je nesto odabrao*/}
                     <div>
                         <label htmlFor="country">Select country:
                             <Form.Select aria-label="Default select example" onChange={handleCountryChange}>
