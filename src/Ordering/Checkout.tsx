@@ -34,7 +34,7 @@ export function Checkout() {
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-
+    
     const validationRules2: Record<string, { rule: RegExp, message: string }> = {
         name: { rule: /^[A-Za-z\s]+$/, message: ' Only letters and spaces allowed' },
         address: { rule: /^.{5,}$/, message: ' Minimum 5 characters' },
@@ -43,8 +43,14 @@ export function Checkout() {
         email: { rule: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email format is invalid' },
         card: {rule: /^\d{8,}$/, message:'Card number needs to have at least 8 digits'}
     };
-
-    const [formError, setFormError] = useState("")
+    const [errors, setErrors] = useState<Record<string, string | null>>({});
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name: nameInputElement, value } = e.target; 
+        setFormData({
+            ...formData,
+            [nameInputElement]: value
+        });
+    const isValid = validationRules2[nameInputElement].rule.test(value);
 
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
