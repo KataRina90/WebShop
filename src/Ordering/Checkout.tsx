@@ -8,13 +8,26 @@ interface CountryProps {
     value: string
     label: string
 }
+interface FormData {
+    name: string;
+    address: string;
+    city: string;
+    postcode: string;
+    email: string;
+    card:number
+}
+
+
 
 export function Checkout() {
-    const [name, setName] = useState("");
-    const [address, setAdress] = useState("");
-    const [postcode, setPostcode] = useState("");
-    const [city, setCity] = useState("");
-    const [card, setCard] = useState("");
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        address: '',
+        city: '',
+        postcode: '',
+        email: '',
+        card:0
+    });
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedCountry, setSelectedCountry] = useState('')
     const [selectedPay, setSelectedPay] = useState('') //da li mi treba da se cuva selekotvano stanje? verovatno da, za placanje dalje.
@@ -22,44 +35,16 @@ export function Checkout() {
         setSelectedPay(selectedOption);
     };
 
-    const validationRules = {
-        name: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
-        address: /^.{5,}$/, // Minimum 5 characters
-        city: /^[A-Za-z\s]+$/, // Only letters and spaces allowed
-        postcode: /^[0-9]+$/, // Only numbers
-        email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Email format
-        card: /^[0-9]+$/
+    const validationRules2: Record<string, { rule: RegExp, message: string }> = {
+        name: { rule: /^[A-Za-z\s]+$/, message: ' Only letters and spaces allowed' },
+        address: { rule: /^.{5,}$/, message: ' Minimum 5 characters' },
+        city: { rule: /^[A-Za-z\s]+$/, message: 'Only letters and spaces allowed' },
+        postcode: { rule: /^\d{5}$/, message: 'Exactly 5 digits' },
+        email: { rule: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email format is invalid' },
+        card: {rule: /^\d{8,}$/, message:'Card number needs to have at least 8 digits'}
     };
+
     const [formError, setFormError] = useState("")
-
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        if (
-            !name ||
-            !address ||
-            !postcode ||
-            !city ||
-            !card ||
-            !selectedCountry ||
-            !selectedPay
-        ) {
-            alert("Please fill out all fields.");
-        }
-        else {
-            dispatchOrder({
-                type: "payOrder",
-                orderNo: currentOrder!.orderNo
-            })
-
-            dispatchBasket({
-                type: "clearItem"
-            })
-            navigate("/thankyou")
-        }
-
-
-
-    }
 
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
@@ -183,3 +168,32 @@ export function Checkout() {
 
     )
 }
+
+/* const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (
+        !name ||
+        !address ||
+        !postcode ||
+        !city ||
+        !card ||
+        !selectedCountry ||
+        !selectedPay
+    ) {
+        alert("Please fill out all fields.");
+    }
+    else {
+        dispatchOrder({
+            type: "payOrder",
+            orderNo: currentOrder!.orderNo
+        })
+
+        dispatchBasket({
+            type: "clearItem"
+        })
+        navigate("/thankyou")
+    }
+
+
+
+} */

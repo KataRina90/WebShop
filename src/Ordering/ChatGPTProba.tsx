@@ -20,7 +20,7 @@ function FormValidation() {
     const [errors, setErrors] = useState<Record<string, string | null>>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name: nameInputElement, value } = e.target; //name i value su jedni od intrinzickih properties od e
+        const { name: nameInputElement, value } = e.target; //name i value su jedni od intrinzickih properties od e. ovo je dekonstrukcija objekta.
         setFormData({
             ...formData,
             [nameInputElement]: value, //ime propertija je sadrzaj promenljive
