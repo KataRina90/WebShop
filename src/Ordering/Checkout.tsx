@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useBasketProvider } from "../basket/basketContext";
 import { useOrderProvider } from "./orderContext";
 import { OrderDetails } from "./OrderDetails";
+
 interface CountryProps {
     value: string
     label: string
@@ -14,7 +15,7 @@ interface FormData {
     city: string;
     postcode: string;
     email: string;
-    card:number
+    card: number
 }
 
 
@@ -26,7 +27,7 @@ export function Checkout() {
         city: '',
         postcode: '',
         email: '',
-        card:0
+        card: 0
     });
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedCountry, setSelectedCountry] = useState('')
@@ -34,28 +35,48 @@ export function Checkout() {
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
     };
-    
-    const validationRules2: Record<string, { rule: RegExp, message: string }> = {
-        name: { rule: /^[A-Za-z\s]+$/, message: ' Only letters and spaces allowed' },
-        address: { rule: /^.{5,}$/, message: ' Minimum 5 characters' },
-        city: { rule: /^[A-Za-z\s]+$/, message: 'Only letters and spaces allowed' },
-        postcode: { rule: /^\d{5}$/, message: 'Exactly 5 digits' },
-        email: { rule: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email format is invalid' },
-        card: {rule: /^\d{8,}$/, message:'Card number needs to have at least 8 digits'}
-    };
+
+
     const [errors, setErrors] = useState<Record<string, string | null>>({});
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name: nameInputElement, value } = e.target; 
+        const { name: nameInputElement, value } = e.target;
         setFormData({
             ...formData,
             [nameInputElement]: value
         });
-    const isValid = validationRules2[nameInputElement].rule.test(value);
+        const validationRules2: Record<string, { rule: RegExp, message: string }> = {
+            name: { rule: /^[A-Za-z\s]+$/, message: ' Only letters and spaces allowed' },
+            address: { rule: /^.{5,}$/, message: ' Minimum 5 characters' },
+            city: { rule: /^[A-Za-z\s]+$/, message: 'Only letters and spaces allowed' },
+            postcode: { rule: /^\d{5}$/, message: 'Exactly 5 digits' },
+            email: { rule: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email format is invalid' },
+            card: { rule: /^\d{8,}$/, message: 'Card number needs to have at least 8 digits' }
+        };
+        const isValid = validationRules2[nameInputElement].rule.test(value);
+        setErrors({
+            ...errors,
+            [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
+        });
+    }
 
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
     const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
     const [currentBasket, dispatchBasket] = useBasketProvider();
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+            dispatchOrder({
+                type: "payOrder",
+                orderNo: currentOrder!.orderNo
+            })
+    
+            dispatchBasket({
+                type: "clearItem"
+            })
+            navigate("/thankyou")
+        }
+    
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -84,13 +105,13 @@ export function Checkout() {
     return (
         <Row>
             <Col sm={8}>
-                <form onSubmit={handleSubmit}>
+                <form >
                     <h4> Delivery address </h4>
                     <label> Recepient's first and last name:
                         <input
                             type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={formData.name}
+                            onChange={handleChange}
                             required
                         />
                     </label> <br />
@@ -98,18 +119,18 @@ export function Checkout() {
                     <label> Street and number:
                         <input
                             type="text"
-                            value={address}
-                            onChange={(e) => setAdress(e.target.value)}
+                            value={formData.address}
+                            onChange={handleChange}
                             required
                         />
                     </label> <br />
                     <Row>
                         <Col>
-                            <label> PLZ:
+                            <label> Postcode:
                                 <input
                                     type="number"
-                                    value={postcode}
-                                    onChange={(e) => setPostcode(e.target.value)}
+                                    value={formData.postcode}
+                                    onChange={handleChange}
                                     required
                                 />
                             </label>
@@ -119,8 +140,8 @@ export function Checkout() {
                             <label> City:
                                 <input
                                     type="text"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    value={formData.city}
+                                    onChange={handleChange}
                                     required
                                 />
                             </label> <br />
@@ -149,8 +170,8 @@ export function Checkout() {
                     <label> Enter your card number:
                         <input
                             type="number"
-                            value={card}
-                            onChange={(e) => setCard(e.target.value)}
+                            value={formData.card}
+                            onChange={handleChange}
                             required
                         />
                     </label>
@@ -175,31 +196,4 @@ export function Checkout() {
     )
 }
 
-/* const handleSubmit = (event: any) => {
-    event.preventDefault();
-    if (
-        !name ||
-        !address ||
-        !postcode ||
-        !city ||
-        !card ||
-        !selectedCountry ||
-        !selectedPay
-    ) {
-        alert("Please fill out all fields.");
-    }
-    else {
-        dispatchOrder({
-            type: "payOrder",
-            orderNo: currentOrder!.orderNo
-        })
 
-        dispatchBasket({
-            type: "clearItem"
-        })
-        navigate("/thankyou")
-    }
-
-
-
-} */
