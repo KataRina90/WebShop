@@ -84,11 +84,11 @@ export function Checkout() {
                 type: "createOrder",
                 basket: currentBasket,
                 deliveryAdress: {
-                    city: "",
-                    country: "",
-                    postcode: 0,
-                    recepientName: "",
-                    streetName: "",
+                    city: formData.city,
+                    country:selectedCountry,
+                    postcode: formData.postcode,
+                    recepientName: formData.name,
+                    streetName: formData.address,
                     streetNo: ""
                 }
             })
