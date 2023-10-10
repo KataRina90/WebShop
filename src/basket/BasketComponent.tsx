@@ -45,18 +45,7 @@ export function BasketComponent() {
                                     <p> Total with VAT: {currentBasket.totalPrice}  </p>
                                 </Card.Text>
                                 <button onClick={e => {
-                                    dispatchOrder({
-                                        type: "createOrder",
-                                        basket: currentBasket,
-                                        deliveryAdress: {
-                                            city: "",
-                                            country: "",
-                                            postcode: 0,
-                                            recepientName: "",
-                                            streetName: "",
-                                            streetNo: ""
-                                        }
-                                    })
+                                    
                                     navigate("/checkout")
                                 }}>
                                     CHECKOUT

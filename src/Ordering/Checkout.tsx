@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext, useReducer } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { colors } from "react-select/dist/declarations/src/theme";
 import { useBasketProvider } from "../basket/basketContext";
 import { useOrderProvider } from "./orderContext";
 import { OrderDetails } from "./OrderDetails";
@@ -64,17 +65,44 @@ export function Checkout() {
     const [allOrders, dispatchOrder] = useOrderProvider();
     const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
     const [currentBasket, dispatchBasket] = useBasketProvider();
+    const isvalidForm=():boolean => {
+     if (errors.name!=null ||
+        errors.address!=null||
+        errors.city!=null||
+        errors.postcode!=null||
+        errors.email!=null||
+        errors.card!=null
+        ) 
+        return false
+        else return true
+    }
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        if (isvalidForm()) {
+        
+            dispatchOrder({
+                type: "createOrder",
+                basket: currentBasket,
+                deliveryAdress: {
+                    city: "",
+                    country: "",
+                    postcode: 0,
+                    recepientName: "",
+                    streetName: "",
+                    streetNo: ""
+                }
+            })
             dispatchOrder({
                 type: "payOrder",
                 orderNo: currentOrder!.orderNo
             })
-    
+
             dispatchBasket({
                 type: "clearItem"
             })
             navigate("/thankyou")
+        }
+        else alert ('Correct all errors before placing the order')
         }
     
 
@@ -110,41 +138,49 @@ export function Checkout() {
                     <label> Recepient's first and last name:
                         <input
                             type="text"
+                            name="name"
                             value={formData.name}
                             onChange={handleChange}
                             required
                         />
-                    </label> <br />
-
+                    </label> 
+                    <br />
+                    <p style={{ color: 'red' }}> {errors.name} </p>
                     <label> Street and number:
                         <input
                             type="text"
+                            name="address"
                             value={formData.address}
                             onChange={handleChange}
                             required
                         />
                     </label> <br />
+                    <p style={{ color: 'red' }}> {errors.address} </p>
                     <Row>
                         <Col>
                             <label> Postcode:
                                 <input
                                     type="number"
+                                    name="postcode"
                                     value={formData.postcode}
                                     onChange={handleChange}
                                     required
                                 />
-                            </label>
+                            </label> <br/>
+                            <p style={{ color: 'red' }}> {errors.postcode} </p>
                         </Col>
                         <Col sm={7}>
 
                             <label> City:
                                 <input
                                     type="text"
+                                    name="city"
                                     value={formData.city}
                                     onChange={handleChange}
                                     required
                                 />
                             </label> <br />
+                            <p style={{ color: 'red' }}> {errors.city} </p>
                         </Col>
                     </Row>
                     {/* ovde samo proveri da li input field ima value, odnosno da li je nesto odabrao*/}
@@ -170,12 +206,13 @@ export function Checkout() {
                     <label> Enter your card number:
                         <input
                             type="number"
+                            name="card"
                             value={formData.card}
                             onChange={handleChange}
                             required
                         />
-                    </label>
-                    {/*         <button type="submit" onClick={handleSubmit}> Submit </button> */}
+                    </label> <br/>
+                    <p style={{ color: 'red' }}> {errors.card} </p>
                 </form>
             </Col>
 
