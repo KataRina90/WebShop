@@ -12,7 +12,7 @@ export interface IDeliveryAddress {
     recepientName: string,
     streetName: string,
     streetNo: string,
-    postcode: number,
+    postcode: string,
     city: string
     country: string
 }

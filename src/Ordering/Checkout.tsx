@@ -3,6 +3,7 @@ import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { colors } from "react-select/dist/declarations/src/theme";
 import { useBasketProvider } from "../basket/basketContext";
+import { CheckoutBasket } from "./CheckoutBasket";
 import { useOrderProvider } from "./orderContext";
 import { OrderDetails } from "./OrderDetails";
 
@@ -16,19 +17,24 @@ interface FormData {
     city: string;
     postcode: string;
     email: string;
-    card: number
+    card: number;
+    deliveryPrice:number;
+    totalVAT:number
 }
 
 
 
 export function Checkout() {
+    const [currentBasket, dispatchBasket] = useBasketProvider();
     const [formData, setFormData] = useState<FormData>({
         name: '',
         address: '',
         city: '',
         postcode: '',
         email: '',
-        card: 0
+        card: 0,
+        deliveryPrice:0,
+        totalVAT:currentBasket.totalPrice
     });
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedCountry, setSelectedCountry] = useState('')
@@ -64,7 +70,6 @@ export function Checkout() {
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
     const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
-    const [currentBasket, dispatchBasket] = useBasketProvider();
     const isvalidForm=():boolean => {
      if (errors.name!=null ||
         errors.address!=null||
@@ -76,34 +81,6 @@ export function Checkout() {
         return false
         else return true
     }
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        if (isvalidForm()) {
-        
-            dispatchOrder({
-                type: "createOrder",
-                basket: currentBasket,
-                deliveryAdress: {
-                    city: formData.city,
-                    country:selectedCountry,
-                    postcode: formData.postcode,
-                    recepientName: formData.name,
-                    streetName: formData.address,
-                    streetNo: ""
-                }
-            })
-            dispatchOrder({
-                type: "payOrder",
-                orderNo: currentOrder!.orderNo
-            })
-
-            dispatchBasket({
-                type: "clearItem"
-            })
-            navigate("/thankyou")
-        }
-        else alert ('Correct all errors before placing the order')
-        }
     
 
     useEffect(() => {
@@ -128,7 +105,31 @@ export function Checkout() {
         setSelectedCountry(selectedOption);
     };
 
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        if (isvalidForm()) {
+            dispatchOrder({
+                type: "createOrder",
+                basket: currentBasket,
+                deliveryAdress: {
+                    city: formData.city,
+                    country:selectedCountry,
+                    postcode: formData.postcode,
+                    recepientName: formData.name,
+                    streetName: formData.address,
+                    streetNo: ""
+                }
+            })
+          
 
+            dispatchBasket({
+                type: "clearItem"
+            })
+            navigate("/thankyou")
+        }
+        else alert ('Correct all errors before placing the order')
+        }
+    
 
     return (
         <Row>
@@ -219,9 +220,9 @@ export function Checkout() {
             <Col sm={4}>
                 <h4> Review your order </h4> <br />
 
-                {
-                    currentOrder !== null && < OrderDetails orderdetails={currentOrder} />
-                }
+    
+                  < CheckoutBasket basket={currentBasket} deliveryPrice={formData.deliveryPrice} totalVAT={formData.totalVAT} />
+            
 
                 <button onClick={handleSubmit}>
                     PLACE ORDER
