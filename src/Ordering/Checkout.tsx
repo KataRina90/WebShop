@@ -12,6 +12,7 @@ interface CountryProps {
     label: string
 }
 interface FormData {
+    [key:string]:any;
     name: string;
     address: string;
     city: string;
@@ -52,12 +53,17 @@ export function Checkout() {
             ...formData,
             [nameInputElement]: value
         });
+        validateInputField(nameInputElement,value)
+     
+    }
+
+    const validateInputField= (nameInputElement:string,value:any) => {
         const validationRules2: Record<string, { rule: RegExp, message: string }> = {
-            name: { rule: /^[A-Za-z\s]+$/, message: ' Only letters and spaces allowed' },
-            address: { rule: /^.{5,}$/, message: ' Minimum 5 characters' },
-            city: { rule: /^[A-Za-z\s]+$/, message: 'Only letters and spaces allowed' },
-            postcode: { rule: /^\d{5}$/, message: 'Exactly 5 digits' },
-            email: { rule: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email format is invalid' },
+            name: { rule: /^(?=.*[a-zA-Z]).{4,}$/, message: ' Minimum 4 letters and spaces allowed' },
+            address: { rule: /^(?=.*[a-zA-Z0-9\s]).{5,}$/, message: ' Minimum 5 characters' },
+            city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
+            postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
+            email: { rule:/^(?=.{1,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
             card: { rule: /^\d{8,}$/, message: 'Card number needs to have at least 8 digits' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
@@ -65,21 +71,31 @@ export function Checkout() {
             ...errors,
             [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
         });
+        return isValid;
     }
-
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
     const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
+    
     const isvalidForm=():boolean => {
-     if (errors.name!=null ||
-        errors.address!=null||
-        errors.city!=null||
-        errors.postcode!=null||
-        errors.email!=null||
-        errors.card!=null
-        ) 
-        return false
-        else return true
+      /*   //prva varijanta
+        validateInputField ('name', formData.name)
+        validateInputField ('address', formData.address)
+        validateInputField ('card',formData.card)
+        validateInputField ('city',formData.city) */
+
+
+        //druga varijanta
+        const inputFieldsNames=['name','address', 'card','city', 'email', 'postcode']
+        let formValid=true; 
+        inputFieldsNames.forEach((nameInputElement)=> {
+        const isValidField= validateInputField (nameInputElement,formData[nameInputElement])
+        if (!isValidField) formValid=false
+        })
+        return formValid;
+
+        //treca varijanta - da iteriras po svim propertijima objekta ako ne znas koji su sve properties sadrzani, ili da ne moras da pises rucno kao u varijanti 2
+        
     }
     
 
