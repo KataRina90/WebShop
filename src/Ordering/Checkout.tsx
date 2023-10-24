@@ -64,13 +64,23 @@ export function Checkout() {
             city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
             email: { rule:/^(?=.{1,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
-            card: { rule: /^\d{8,}$/, message: 'Card number needs to have at least 8 digits' }
+            card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
-        setErrors({
+
+        //ako se koristi prethodno stanje za formiranje novog stanja, ovaj slucaj nece raditi jer nama treba akumulacija stanja, a ovde ispod ce da zapamti samo zadnji
+/*         setErrors({
             ...errors,
             [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
-        });
+        }); */
+
+        // kao argument za setErrors umesto objekta cemo da stavimo funkciju gde je argument za funkciju trenutno stanje (akumulirano stanje - skup svih stanja do sada)
+        setErrors((errors)=> {
+            return {
+                ...errors,
+                [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
+            }
+        })
         return isValid;
     }
     const navigate = useNavigate();
