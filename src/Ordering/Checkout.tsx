@@ -48,7 +48,7 @@ export function Checkout() {
     const [errors, setErrors] = useState<Record<string, string | null>>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name: nameInputElement, value } = e.target; //dekonstrukcija objekta
+        const { name: nameInputElement, value } = e.target; //dekonstrukcija objekta, intrinzicki propertiji e.target-a
         setFormData({
             ...formData,
             [nameInputElement]: value
