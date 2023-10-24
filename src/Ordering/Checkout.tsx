@@ -58,12 +58,13 @@ export function Checkout() {
     }
 
     const validateInputField= (nameInputElement:string,value:any) => {
+        //pogledaj ovaj record konstrukt ispod da razumes i kakva je to vrsta objekta - podseti se map i set!
         const validationRules2: Record<string, { rule: RegExp, message: string }> = {
             name: { rule: /^(?=.*[a-zA-Z]).{4,}$/, message: ' Minimum 4 letters and spaces allowed' },
             address: { rule: /^(?=.*[a-zA-Z0-9\s]).{5,}$/, message: ' Minimum 5 characters' },
             city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
-            email: { rule:/^(?=.{1,50}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
+            email: { rule:/^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
             card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
@@ -173,6 +174,17 @@ export function Checkout() {
                     </label> 
                     <br />
                     <p style={{ color: 'red' }}> {errors.name} </p>
+                    <label> Your email:
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label> 
+                    <br />
+                    <p style={{ color: 'red' }}> {errors.email} </p>
                     <label> Street and number:
                         <input
                             type="text"
