@@ -64,7 +64,7 @@ export function Checkout() {
             address: { rule: /^(?=.*[a-zA-Z0-9\s]).{5,}$/, message: ' Minimum 5 characters' },
             city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
-            email: { rule:/^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
+            email: { rule:/^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
             card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
@@ -97,7 +97,7 @@ export function Checkout() {
 
 
         //druga varijanta
-        const inputFieldsNames=['name','address', 'card','city', 'email', 'postcode']
+        const inputFieldsNames=['name','address','card','city','email','postcode']
         let formValid=true; 
         inputFieldsNames.forEach((nameInputElement)=> {
         const isValidField= validateInputField (nameInputElement,formData[nameInputElement])
@@ -176,7 +176,7 @@ export function Checkout() {
                     <p style={{ color: 'red' }}> {errors.name} </p>
                     <label> Your email:
                         <input
-                            type="email"
+                            type="text"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
