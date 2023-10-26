@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useReducer } from "react";
+import { useEffect, useState, useContext, useReducer, ReactEventHandler } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { colors } from "react-select/dist/declarations/src/theme";
@@ -53,8 +53,11 @@ export function Checkout() {
             ...formData,
             [nameInputElement]: value
         });
-        validateInputField(nameInputElement,value)
      
+    }
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>)=> {
+        const { name: nameInputElement, value } = e.target;
+        validateInputField(nameInputElement,value)
     }
 
     const validateInputField= (nameInputElement:string,value:any) => {
@@ -169,6 +172,7 @@ export function Checkout() {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             required
                         />
                     </label> 
@@ -180,6 +184,7 @@ export function Checkout() {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             required
                         />
                     </label> 
@@ -191,6 +196,7 @@ export function Checkout() {
                             name="address"
                             value={formData.address}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             required
                         />
                     </label> <br />
@@ -203,6 +209,7 @@ export function Checkout() {
                                     name="postcode"
                                     value={formData.postcode}
                                     onChange={handleChange}
+                                    onBlur={handleBlur}
                                     required
                                 />
                             </label> <br/>
@@ -216,6 +223,7 @@ export function Checkout() {
                                     name="city"
                                     value={formData.city}
                                     onChange={handleChange}
+                                    onBlur={handleBlur}
                                     required
                                 />
                             </label> <br />
@@ -248,6 +256,7 @@ export function Checkout() {
                             name="card"
                             value={formData.card}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             required
                         />
                     </label> <br/>
