@@ -12,15 +12,15 @@ interface CountryProps {
     label: string
 }
 interface FormData {
-    [key:string]:any;
+    [key: string]: any;
     name: string;
     address: string;
     city: string;
     postcode: string;
     email: string;
     card: number;
-    deliveryPrice:number;
-    totalVAT:number
+    deliveryPrice: number;
+    totalVAT: number
 }
 
 
@@ -34,11 +34,13 @@ export function Checkout() {
         postcode: '',
         email: '',
         card: 0,
-        deliveryPrice:0,
-        totalVAT:currentBasket.totalPrice
+        deliveryPrice: 0,
+        totalVAT: currentBasket.totalPrice
     });
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedCountry, setSelectedCountry] = useState('')
+    const [showErrorCountry, setShowErrorCountry] = useState(false);
+
     const [selectedPay, setSelectedPay] = useState('') //da li mi treba da se cuva selekotvano stanje? verovatno da, za placanje dalje.
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
@@ -53,33 +55,33 @@ export function Checkout() {
             ...formData,
             [nameInputElement]: value
         });
-     
+
     }
-    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>)=> {
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name: nameInputElement, value } = e.target;
-        validateInputField(nameInputElement,value)
+        validateInputField(nameInputElement, value)
     }
 
-    const validateInputField= (nameInputElement:string,value:any) => {
+    const validateInputField = (nameInputElement: string, value: any) => {
         //pogledaj ovaj record konstrukt ispod da razumes i kakva je to vrsta objekta - podseti se map i set!
         const validationRules2: Record<string, { rule: RegExp, message: string }> = {
             name: { rule: /^(?=.*[a-zA-Z]).{4,}$/, message: ' Minimum 4 letters and spaces allowed' },
             address: { rule: /^(?=.*[a-zA-Z0-9\s]).{5,}$/, message: ' Minimum 5 characters' },
             city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
-            email: { rule:/^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
+            email: { rule: /^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
             card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
 
         //ako se koristi prethodno stanje za formiranje novog stanja, ovaj slucaj nece raditi jer nama treba akumulacija stanja, a ovde ispod ce da zapamti samo zadnji
-/*         setErrors({
-            ...errors,
-            [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
-        }); */
+        /*         setErrors({
+                    ...errors,
+                    [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
+                }); */
 
         // kao argument za setErrors umesto objekta cemo da stavimo funkciju gde je argument za funkciju trenutno stanje (akumulirano stanje - skup svih stanja do sada)
-        setErrors((errors)=> {
+        setErrors((errors) => {
             return {
                 ...errors,
                 [nameInputElement]: isValid ? null : validationRules2[nameInputElement].message,
@@ -90,28 +92,28 @@ export function Checkout() {
     const navigate = useNavigate();
     const [allOrders, dispatchOrder] = useOrderProvider();
     const currentOrder = allOrders.orders.length > 0 ? allOrders.orders[allOrders.orders.length - 1] : null; //displaying the last created order
-    
-    const isvalidForm=():boolean => {
-      /*   //prva varijanta
-        validateInputField ('name', formData.name)
-        validateInputField ('address', formData.address)
-        validateInputField ('card',formData.card)
-        validateInputField ('city',formData.city) */
+
+    const isvalidForm = (): boolean => {
+        /*   //prva varijanta
+          validateInputField ('name', formData.name)
+          validateInputField ('address', formData.address)
+          validateInputField ('card',formData.card)
+          validateInputField ('city',formData.city) */
 
 
         //druga varijanta
-        const inputFieldsNames=['name','address','card','city','email','postcode']
-        let formValid=true; 
-        inputFieldsNames.forEach((nameInputElement)=> {
-        const isValidField= validateInputField (nameInputElement,formData[nameInputElement])
-        if (!isValidField) formValid=false
+        const inputFieldsNames = ['name', 'address', 'card', 'city', 'email', 'postcode']
+        let formValid = true;
+        inputFieldsNames.forEach((nameInputElement) => {
+            const isValidField = validateInputField(nameInputElement, formData[nameInputElement])
+            if (!isValidField) formValid = false
         })
         return formValid;
 
         //treca varijanta - da iteriras po svim propertijima objekta ako ne znas koji su sve properties sadrzani, ili da ne moras da pises rucno kao u varijanti 2
-        
+
     }
-    
+
 
     useEffect(() => {
         // Fetch the list of countries from the REST Countries API
@@ -134,32 +136,36 @@ export function Checkout() {
     const handleCountryChange = (selectedOption: any) => {
         setSelectedCountry(selectedOption);
     };
-
+  
     const handleSubmit = (event: any) => {
         event.preventDefault();
+
+        if (selectedCountry==='--')  {
+            setShowErrorCountry(true)
+        }
         if (isvalidForm()) {
             dispatchOrder({
                 type: "createOrder",
                 basket: currentBasket,
                 deliveryAdress: {
                     city: formData.city,
-                    country:selectedCountry,
+                    country: selectedCountry,
                     postcode: formData.postcode,
                     recepientName: formData.name,
                     streetName: formData.address,
                     streetNo: ""
                 }
             })
-          
+
 
             dispatchBasket({
                 type: "clearItem"
             })
             navigate("/thankyou")
         }
-        else alert ('Correct all errors before placing the order')
-        }
-    
+        else alert('Correct all errors before placing the order')
+    }
+
 
     return (
         <Row>
@@ -175,7 +181,7 @@ export function Checkout() {
                             onBlur={handleBlur}
                             required
                         />
-                    </label> 
+                    </label>
                     <br />
                     <p style={{ color: 'red' }}> {errors.name} </p>
                     <label> Your email:
@@ -187,7 +193,7 @@ export function Checkout() {
                             onBlur={handleBlur}
                             required
                         />
-                    </label> 
+                    </label>
                     <br />
                     <p style={{ color: 'red' }}> {errors.email} </p>
                     <label> Street and number:
@@ -212,7 +218,7 @@ export function Checkout() {
                                     onBlur={handleBlur}
                                     required
                                 />
-                            </label> <br/>
+                            </label> <br />
                             <p style={{ color: 'red' }}> {errors.postcode} </p>
                         </Col>
                         <Col sm={7}>
@@ -238,13 +244,18 @@ export function Checkout() {
                                 {countries.map((country) => (
                                     <option value={country.value}> {country.label} </option>
                                 ))}
+
                             </Form.Select> <br />
+                            {showErrorCountry? (
+                                <p style={{ color: 'red' }}>Please select your country</p>
+                            ) : null}
                         </label>
                     </div>
 
                     <h4> Payment method </h4>
                     <label htmlFor="payment"> Choose your payment method
-                        <Form.Select aria-label="Default select example" onChange={handlePaymentChange}>
+                        <Form.Select aria-label="Default select example"
+                            onChange={handlePaymentChange}>
                             <option> -- </option>
                             <option value="card"> Credit / Debit Card</option>
                             <option value="paypal"> PayPal </option>
@@ -259,7 +270,7 @@ export function Checkout() {
                             onBlur={handleBlur}
                             required
                         />
-                    </label> <br/>
+                    </label> <br />
                     <p style={{ color: 'red' }}> {errors.card} </p>
                 </form>
             </Col>
@@ -267,9 +278,9 @@ export function Checkout() {
             <Col sm={4}>
                 <h4> Review your order </h4> <br />
 
-    
-                  < CheckoutBasket basket={currentBasket} deliveryPrice={formData.deliveryPrice} totalVAT={formData.totalVAT} />
-            
+
+                < CheckoutBasket basket={currentBasket} deliveryPrice={formData.deliveryPrice} totalVAT={formData.totalVAT} />
+
 
                 <button onClick={handleSubmit}>
                     PLACE ORDER
