@@ -33,14 +33,12 @@ export function Checkout() {
         city: '',
         postcode: '',
         email: '',
+        country:'',
         card: 0,
         deliveryPrice: 0,
         totalVAT: currentBasket.totalPrice
     });
     const [countries, setCountries] = useState<CountryProps[]>([])
-    const [selectedCountry, setSelectedCountry] = useState('')
-    const [showErrorCountry, setShowErrorCountry] = useState(false);
-
     const [selectedPay, setSelectedPay] = useState('') //da li mi treba da se cuva selekotvano stanje? verovatno da, za placanje dalje.
     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
@@ -49,7 +47,7 @@ export function Checkout() {
 
     const [errors, setErrors] = useState<Record<string, string | null>>({});
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name: nameInputElement, value } = e.target; //dekonstrukcija objekta, intrinzicki propertiji e.target-a
         setFormData({
             ...formData,
@@ -57,7 +55,7 @@ export function Checkout() {
         });
 
     }
-    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement| HTMLSelectElement>) => {
         const { name: nameInputElement, value } = e.target;
         validateInputField(nameInputElement, value)
     }
@@ -70,7 +68,8 @@ export function Checkout() {
             city: { rule: /^(?=.*[a-zA-Z]).{2,}$/, message: 'Minimum 2 letters and spaces allowed' },
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
             email: { rule: /^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
-            card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' }
+            card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' },
+            country:{ rule: /^(?=.*[a-zA-Z]).{1,}$/, message: 'Please select your country' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
 
@@ -102,7 +101,8 @@ export function Checkout() {
 
 
         //druga varijanta
-        const inputFieldsNames = ['name', 'address', 'card', 'city', 'email', 'postcode']
+
+        const inputFieldsNames = ['name', 'address', 'card', 'city', 'email', 'postcode', 'country']
         let formValid = true;
         inputFieldsNames.forEach((nameInputElement) => {
             const isValidField = validateInputField(nameInputElement, formData[nameInputElement])
@@ -133,23 +133,18 @@ export function Checkout() {
             });
     }, []);
 
-    const handleCountryChange = (selectedOption: any) => {
-        setSelectedCountry(selectedOption);
-    };
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        if (selectedCountry === '') {
-            setShowErrorCountry(true)
-        }
+       
         if (isvalidForm()) {
             dispatchOrder({
                 type: "createOrder",
                 basket: currentBasket,
                 deliveryAdress: {
                     city: formData.city,
-                    country: selectedCountry,
+                    country: formData.country,
                     postcode: formData.postcode,
                     recepientName: formData.name,
                     streetName: formData.address,
@@ -239,16 +234,17 @@ export function Checkout() {
                     {/* ovde samo proveri da li input field ima value, odnosno da li je nesto odabrao*/}
                     <div>
                         <label htmlFor="country">Select country:
-                            <Form.Select aria-label="Default select example" onChange={handleCountryChange}>
+                            <Form.Select aria-label="Default select example" onChange={handleChange}
+                            name="country"
+                            value={formData.country}
+                            onBlur={handleBlur}>
                                 <option></option>
                                 {countries.map((country) => (
                                     <option value={country.value}> {country.label} </option>
                                 ))}
 
                             </Form.Select> <br />
-                            {showErrorCountry ? (
-                                <p style={{ color: 'red' }}>Please select your country</p>
-                            ) : null}
+                            <p style={{ color: 'red' }}> {errors.country} </p>
                         </label>
                     </div>
 
