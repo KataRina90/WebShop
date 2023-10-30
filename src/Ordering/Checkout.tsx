@@ -136,11 +136,11 @@ export function Checkout() {
     const handleCountryChange = (selectedOption: any) => {
         setSelectedCountry(selectedOption);
     };
-  
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        if (selectedCountry==='--')  {
+        if (selectedCountry === '') {
             setShowErrorCountry(true)
         }
         if (isvalidForm()) {
@@ -240,13 +240,13 @@ export function Checkout() {
                     <div>
                         <label htmlFor="country">Select country:
                             <Form.Select aria-label="Default select example" onChange={handleCountryChange}>
-                                <option> -- </option>
+                                <option></option>
                                 {countries.map((country) => (
                                     <option value={country.value}> {country.label} </option>
                                 ))}
 
                             </Form.Select> <br />
-                            {showErrorCountry? (
+                            {showErrorCountry ? (
                                 <p style={{ color: 'red' }}>Please select your country</p>
                             ) : null}
                         </label>
