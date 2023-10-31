@@ -19,6 +19,7 @@ interface FormData {
     postcode: string;
     email: string;
     card: number;
+    payment:string;
     deliveryPrice: number;
     totalVAT: number
 }
@@ -35,6 +36,7 @@ export function Checkout() {
         email: '',
         country:'',
         card: 0,
+        payment:'',
         deliveryPrice: 0,
         totalVAT: currentBasket.totalPrice
     });
@@ -69,7 +71,8 @@ export function Checkout() {
             postcode: { rule: /^\d{5}$/, message: 'Must be exactly 5 digits' },
             email: { rule: /^(?=.{1,254}$)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: 'Email format is invalid' },
             card: { rule: /^(?=\d{8,}$)\d+$/, message: 'Card number needs to have at least 8 digits' },
-            country:{ rule: /^(?=.*[a-zA-Z]).{1,}$/, message: 'Please select your country' }
+            country:{ rule: /^(?=.*[a-zA-Z]).{1,}$/, message: 'Please select your country' },
+            payment:{ rule: /^(?=.*[a-zA-Z]).{1,}$/, message: 'Please select your payment method' }
         };
         const isValid = validationRules2[nameInputElement].rule.test(value);
 
@@ -102,7 +105,7 @@ export function Checkout() {
 
         //druga varijanta
 
-        const inputFieldsNames = ['name', 'address', 'card', 'city', 'email', 'postcode', 'country']
+        const inputFieldsNames = ['name', 'address', 'card', 'city', 'email', 'postcode', 'country', 'payment']
         let formValid = true;
         inputFieldsNames.forEach((nameInputElement) => {
             const isValidField = validateInputField(nameInputElement, formData[nameInputElement])
@@ -251,11 +254,15 @@ export function Checkout() {
                     <h4> Payment method </h4>
                     <label htmlFor="payment"> Choose your payment method
                         <Form.Select aria-label="Default select example"
-                            onChange={handlePaymentChange}>
+                            onChange={handlePaymentChange}
+                            name='payment'
+                            value={formData.payment}
+                            onBlur={handleBlur}>
                             <option> -- </option>
                             <option value="card"> Credit / Debit Card</option>
                             <option value="paypal"> PayPal </option>
                         </Form.Select>
+                        <p style={{ color: 'red' }}> {errors.payment} </p>
                     </label> <br />
                     <label> Enter your card number:
                         <input
