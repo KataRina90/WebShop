@@ -245,7 +245,6 @@ export function Checkout() {
                                 {countries.map((country) => (
                                     <option value={country.value}> {country.label} </option>
                                 ))}
-
                             </Form.Select> <br />
                             <p style={{ color: 'red' }}> {errors.country} </p>
                         </label>
@@ -258,7 +257,7 @@ export function Checkout() {
                             name='payment'
                             value={formData.payment}
                             onBlur={handleBlur}>
-                            <option> -- </option>
+                            <option></option>
                             <option value="card"> Credit / Debit Card</option>
                             <option value="paypal"> PayPal </option>
                         </Form.Select>
