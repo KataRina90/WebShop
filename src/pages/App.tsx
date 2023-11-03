@@ -11,13 +11,14 @@ import { BasketComponent } from "../basket/BasketComponent";
 import { Checkout } from "../Ordering/Checkout";
 import { ThankYou } from "../Ordering/ThankYou";
 
+
 export default function App() {
   return (
     //sx example below
-    
+
     <Container>
       <Row sx={HeaderStyle
-     } className="navbar-main">
+      } className="navbar-main">
         <Col sm={1}>
           {" "}
           <Link to={"/"}> Home </Link>
@@ -83,19 +84,22 @@ export default function App() {
               <Container>
                 <Col sm={8}>
                   {" "}
-                  <Checkout/>{" "}
+                  <Checkout />{" "}
                 </Col>
               </Container>
             }
           />
 
-<Route
+
+
+
+          <Route
             path="/thankyou"
             element={
               <Container>
                 <Col sm={8}>
                   {" "}
-                  <ThankYou/>{" "}
+                  <ThankYou />{" "}
                 </Col>
               </Container>
             }
@@ -115,6 +119,6 @@ export default function App() {
 }
 
 
-const HeaderStyle={
-  padding:'10px'
+const HeaderStyle = {
+  padding: '10px'
 }
