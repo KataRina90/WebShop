@@ -42,9 +42,9 @@ export function Checkout() {
     });
     const [countries, setCountries] = useState<CountryProps[]>([])
     const [selectedPay, setSelectedPay] = useState('') //da li mi treba da se cuva selekotvano stanje? verovatno da, za placanje dalje.
-    const handlePaymentChange = (selectedOption: any) => {
+/*     const handlePaymentChange = (selectedOption: any) => {
         setSelectedPay(selectedOption);
-    };
+    }; */
 
 
     const [errors, setErrors] = useState<Record<string, string | null>>({});
@@ -253,8 +253,8 @@ export function Checkout() {
                     <h4> Payment method </h4>
                     <label htmlFor="payment"> Choose your payment method
                         <Form.Select aria-label="Default select example"
-                            onChange={handlePaymentChange}
-                            name='payment'
+                            onChange={handleChange}
+                            name="payment"
                             value={formData.payment}
                             onBlur={handleBlur}>
                             <option></option>
