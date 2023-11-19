@@ -25,9 +25,8 @@ a:hover {
 
 body {
   margin: 0;
-  font-family:serif;
-  background-color:rgb(251, 242, 229)
-
+  font-family: serif;
+  background-color: rgb(251, 242, 229);
 }
 
 /* .nav {
@@ -73,15 +72,15 @@ body {
 }
  */
 
-
 .navbar-main {
- background-color: #131921;
- color: ivory;
-
+  width: 100%;
+  background-color: hsl(140, 46%, 18%);
+  color: ivory;
+  border-bottom: 3px solid;
 }
 
 .button-nav {
-margin:10px;
-background-color:ivory;
-position:relative
+  padding: 10px 10px 5px 10px;
+  margin: 10px 5px 5px 10px;
+  background-color: rgb(251, 242, 229);
 }

@@ -31,13 +31,13 @@ export default function App() {
         </Col>
         <Col sm={1}>
           {" "}
-          <button> Log in </button>
+          <button className="button-nav"> Log in </button>
         </Col>
         <Col sm={1}>
           {" "}
 
           <Link to={"/basket"}>
-            <button> Basket </button>
+            <button className="button-nav"> Basket </button>
           </Link>
 
         </Col>
