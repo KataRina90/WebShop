@@ -21,19 +21,25 @@ export default function App() {
       } className="navbar-main">
         <Col sm={1}>
           {" "}
-          <Link to={"/"}> Home </Link>
+          <Link to={"/"}>
+            <button> Home </button>
+          </Link>
         </Col>
         <Col sm={9}>
           {" "}
-          <h1 style={{ textAlign: "center" }}> TShirt </h1>{" "}
+          <h1 style={{ textAlign: "center" }}> Shirty </h1>{" "}
         </Col>
         <Col sm={1}>
           {" "}
-          <button> LogIn </button>
+          <button> Log in </button>
         </Col>
         <Col sm={1}>
           {" "}
-          <Link to={"/basket"}> Basket </Link>
+
+          <Link to={"/basket"}>
+            <button> Basket </button>
+          </Link>
+
         </Col>
       </Row>
 

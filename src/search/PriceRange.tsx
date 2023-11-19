@@ -6,7 +6,7 @@ export default function PriceRange() {
 
   return (
     <Container>
-      <div className="accordion-header">Price Range</div>
+      <div className="accordion-header"> Price </div>
       <div className="accordion-item">
         <label htmlFor="from">from</label>
         <input
