@@ -22,7 +22,7 @@ export default function App() {
         <Col sm={1}>
           {" "}
           <Link to={"/"}>
-            <button> Home </button>
+            <button className="button-nav"> Home </button>
           </Link>
         </Col>
         <Col sm={9}>
