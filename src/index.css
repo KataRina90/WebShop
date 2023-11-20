@@ -84,3 +84,12 @@ body {
   margin: 10px 5px 5px 10px;
   background-color: rgb(251, 242, 229);
 }
+
+.accordion-header {
+  cursor: pointer;
+  width: 100px;
+}
+
+.accordion-header:hover {
+  background-color: bisque;
+}
