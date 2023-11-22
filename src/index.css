@@ -14,20 +14,53 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-} */
+
 
 body {
   margin: 0;
   font-family: serif;
   background-color: rgb(251, 242, 229);
 }
+
+
+.navbar-main {
+  width: 100%;
+  background-color: hsl(140, 46%, 18%);
+  color: ivory;
+  border-bottom: 3px solid;
+}
+
+.button-nav {
+  padding: 10px 10px 5px 10px;
+  margin: 10px 5px 5px 10px;
+  background-color: rgb(251, 242, 229);
+}
+
+.accordion-header {
+  cursor: pointer;
+  width: 100px;
+  padding: 10px;
+}
+
+.accordion-header:hover {
+  background-color: bisque;
+}
+
+.accordion-indicator {
+
+}
+
+.input-price {
+  width: 70px; 
+
+}
+
+.label-price {
+display: inline;
+}
+
+
+
 
 /* .nav {
   background-color: rgb(53, 11, 50);
@@ -71,39 +104,3 @@ body {
   font-weight: bold;
 }
  */
-
-.navbar-main {
-  width: 100%;
-  background-color: hsl(140, 46%, 18%);
-  color: ivory;
-  border-bottom: 3px solid;
-}
-
-.button-nav {
-  padding: 10px 10px 5px 10px;
-  margin: 10px 5px 5px 10px;
-  background-color: rgb(251, 242, 229);
-}
-
-.accordion-header {
-  cursor: pointer;
-  width: 100px;
-  padding: 10px;
-}
-
-.accordion-header:hover {
-  background-color: bisque;
-}
-
-.accordion-indicator {
-
-}
-
-.input-price {
-  width: 70px; 
-
-}
-
-.label-price {
-display: inline;
-}
