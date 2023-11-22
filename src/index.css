@@ -101,9 +101,9 @@ body {
 
 .input-price {
   width: 70px; 
-  color: rgb(251, 242, 229);
+
 }
 
 .label-price {
-  background-color:rgb(251, 242, 229);
+display: inline;
 }

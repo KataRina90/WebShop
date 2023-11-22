@@ -15,7 +15,7 @@ export default function PriceRange() {
        {/* conditional rendering */}
         {isOpen && (
         <><div className="accordion-item">
-            <label htmlFor="from" className="label-price">from</label>
+            <label htmlFor="from" className="label-price">from
             <input className="input-price"
               min={0}
               onChange={(e) => dispatch({
@@ -25,8 +25,9 @@ export default function PriceRange() {
               value={filteredProducts.searchCriteria.priceRange?.from}
               name="from"
               type="number" />
+              </label>
           
-          <label htmlFor="to" className="label-price">to</label>
+          <label htmlFor="to" className="label-price">to
           <input className="input-price"
               min={0}
               onChange={(e) => dispatch({
@@ -36,8 +37,10 @@ export default function PriceRange() {
               value={filteredProducts.searchCriteria.priceRange?.to}
               name="to"
               type="number" /> 
+               </label>
               </div>
               </>
+             
         )}
       </div>
    
