@@ -1,6 +1,6 @@
-import { Container } from "react-bootstrap";
-import { sizeList } from "../Products/Product";
-import { useFilterProductProvider } from "./FilteredProductContext";
+import { Accordion, Container } from "react-bootstrap";
+import { sizeList } from "../../Products/Product";
+import { useFilterProductProvider } from "../FilteredProductContext";
 
 export interface SizesProps {
   sizes: string[];
@@ -15,9 +15,12 @@ export default function Sizes() {
   }
 
   return (
-    <Container>
-      <div>Sizes</div>
-      {sizeList.map((e, index) => (
+
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Select Size </Accordion.Header>
+        <Accordion.Body>
+        {sizeList.map((e, index) => (
         <div key={index}>
           <input
             checked={
@@ -33,6 +36,9 @@ export default function Sizes() {
           <label htmlFor={index.toString()}>{e}</label>
         </div>
       ))}
-    </Container>
+        </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+
   );
 }

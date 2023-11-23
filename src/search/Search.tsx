@@ -1,11 +1,11 @@
-import Colors from "./Colors";
+import Colors from "./Colors/Colors";
 import PriceRange from "./PriceRange/PriceRange";
-import Sizes from "./Sizes";
+import Sizes from "./Sizes/Sizes";
 
 export default function SearchCriteria() {
   return (
     <div>
-      <div> Search Criteria</div>
+      <div> </div>
       <PriceRange />
       <Colors />
       <Sizes />

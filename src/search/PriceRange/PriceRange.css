@@ -24,6 +24,8 @@
   display: inline;
 }
 
-/* .accordion {
- background-color:aquamarine;
-} */
+.accordion {
+margin-top: 5px;
+margin-bottom: 10px;
+width: 250px;
+} 
