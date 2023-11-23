@@ -36,29 +36,6 @@ body {
   background-color: rgb(251, 242, 229);
 }
 
-.accordion-header {
-  cursor: pointer;
-  width: 100px;
-  padding: 10px;
-}
-
-.accordion-header:hover {
-  background-color: bisque;
-}
-
-.accordion-indicator {
-
-}
-
-.input-price {
-  width: 70px; 
-
-}
-
-.label-price {
-display: inline;
-}
-
 
 
 

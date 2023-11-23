@@ -1,0 +1,24 @@
+/* .accordion-header {
+  cursor: pointer;
+  width: 100px;
+  padding: 10px;
+}
+
+.accordion-header:hover {
+  background-color: bisque;
+}
+
+.accordion-indicator {
+
+} */
+
+.input-price {
+  width: 50px;
+  border-color: black;
+  border-style: inset;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+*/ label-price {
+  display: inline;
+}

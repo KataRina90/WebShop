@@ -1,5 +1,5 @@
 import Colors from "./Colors";
-import PriceRange from "./PriceRange";
+import PriceRange from "./PriceRange/PriceRange";
 import Sizes from "./Sizes";
 
 export default function SearchCriteria() {
