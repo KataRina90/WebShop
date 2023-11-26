@@ -11,6 +11,7 @@ export interface ISearchCriteria {
 
 
 export function ifAnySatsifies(subArray: string[], superArray: string[]) {
+  if (subArray.length==0) return true
   return subArray.some((e) => superArray.includes(e)); //nije mi jasno skroz 
 }
 
