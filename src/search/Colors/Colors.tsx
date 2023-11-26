@@ -12,7 +12,7 @@ export default function Colors() {
   }
 
   return (
-    <Accordion defaultActiveKey="0" flush>
+    <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Select color</Accordion.Header>
         <Accordion.Body>

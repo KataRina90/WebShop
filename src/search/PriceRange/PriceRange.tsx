@@ -58,7 +58,7 @@ export default function PriceRange() {
 
 
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Select price </Accordion.Header>
         <Accordion.Body>
