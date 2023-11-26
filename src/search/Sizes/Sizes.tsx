@@ -16,7 +16,7 @@ export default function Sizes() {
 
   return (
 
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey="0" className="accordion">
       <Accordion.Item eventKey="0">
         <Accordion.Header>Select Size </Accordion.Header>
         <Accordion.Body>

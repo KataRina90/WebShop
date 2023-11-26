@@ -5,7 +5,6 @@ import Sizes from "./Sizes/Sizes";
 export default function SearchCriteria() {
   return (
     <div>
-      <div> </div>
       <PriceRange />
       <Colors />
       <Sizes />

@@ -63,9 +63,7 @@ export default function PriceRange() {
         <Accordion.Header>Select price </Accordion.Header>
         <Accordion.Body>
           <label htmlFor="from" className="label-price">from
-
             <input className="input-price"
-              min={0}
               onChange={(e) => dispatch({
                 type: "rangeFrom",
                 from: Number(e.target.value),
@@ -77,7 +75,6 @@ export default function PriceRange() {
 
           <label htmlFor="to" className="label-price"> to </label>
           <input className="input-price"
-            min={0}
             onChange={(e) => dispatch({
               type: "rangeTo",
               to: Number(e.target.value),

@@ -9,13 +9,16 @@ export interface ISearchCriteria {
   colors: ColorList;
 }
 
+
+export function ifAnySatsifies(subArray: string[], superArray: string[]) {
+  return subArray.some((e) => superArray.includes(e)); //nije mi jasno skroz 
+}
+
 export function getFilteredProducts(
   criteria: ISearchCriteria,
   products: IProduct[]
 ) {
-  function isSubArray(subArray: string[], superArray: string[]) {
-    return subArray.every((e) => superArray.includes(e)); //nije mi jasno skroz 
-  }
+
   const filterFunction = (p: IProduct) => {
     // check for the lower range
     if (criteria.priceRange?.from && criteria.priceRange.from > p.price)
@@ -24,9 +27,9 @@ export function getFilteredProducts(
     if (criteria.priceRange?.to && criteria.priceRange.to < p.price)
       return false;
     // check sizes
-    if (!isSubArray(criteria.sizes, p.sizes)) return false;
+    if (!ifAnySatsifies(criteria.sizes, p.sizes)) return false;
     // check colors
-    if (!isSubArray(criteria.colors, p.colors)) return false;
+    if (!ifAnySatsifies(criteria.colors, p.colors)) return false;
 
     return true; // Add this line
   };

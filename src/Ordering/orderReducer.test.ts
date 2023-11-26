@@ -39,7 +39,7 @@ describe('Order reducer testing for new order', () => {
                 recepientName: 'Katarina Neskovic',
                 streetName: 'Wolfshagenerstrasse',
                 streetNo: '64',
-                postcode: 13187,
+                postcode: '13187',
                 city: 'Berlin',
                 country: 'Germany'
             }
@@ -79,7 +79,7 @@ describe('Order reducer testing for new order', () => {
                     recepientName: 'Katarina Neskovic',
                     streetName: 'Wolfshagenerstrasse',
                     streetNo: '64',
-                    postcode: 13187,
+                    postcode: '13187',
                     city: 'Berlin',
                     country: 'Germany'
                 }
@@ -125,7 +125,7 @@ describe ('Order reducer testing for deleting order', ()=>{
                     recepientName: 'Katarina Neskovic',
                     streetName: 'Wolfshagenerstrasse',
                     streetNo: '64',
-                    postcode: 13187,
+                    postcode: '13187',
                     city: 'Berlin',
                     country: 'Germany'
                 },
@@ -164,7 +164,7 @@ describe ('Order reducer testing for deleting order', ()=>{
                     recepientName: 'Katarina Neskovic',
                     streetName: 'Wolfshagenerstrasse',
                     streetNo: '64',
-                    postcode: 13187,
+                    postcode: '13187',
                     city: 'Berlin',
                     country: 'Germany'
                 },
@@ -211,7 +211,7 @@ describe ('Order reducer testing for deleting order', ()=>{
                 recepientName: 'Katarina Neskovic',
                 streetName: 'Wolfshagenerstrasse',
                 streetNo: '64',
-                postcode: 13187,
+                postcode: '13187',
                 city: 'Berlin',
                 country: 'Germany'
             },
