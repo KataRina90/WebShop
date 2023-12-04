@@ -1,0 +1,41 @@
+.card-style {
+border: light;
+width: 18rem;
+cursor: pointer;
+padding:0px;
+margin:10px;
+}
+
+.card-img {
+/* why isn't it working when i try using the class name to style the height and width
+width: 300px;
+height: 250px;
+*/
+}
+
+.card-header {
+   font-size: medium;
+   color: rgb(117, 116, 116);
+}
+
+.card-title {
+ margin: 0px;
+ font-size: larger;
+ font-weight: normal;
+ color:brown;
+}
+
+.card-text-sizes {
+margin-top:0px;
+color: black;
+
+}
+
+.card-text-colors {
+   margin-top:0px;
+   color: black;
+   }
+
+ .card-text-price {
+   font-weight: bold;
+   }
