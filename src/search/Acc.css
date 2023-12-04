@@ -2,8 +2,8 @@
 .accordion {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 500px;
     border: thin;
+    width: 300px;
     } 
     
     .accordion-flush {

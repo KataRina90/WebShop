@@ -36,11 +36,15 @@ body {
   background-color: rgb(251, 242, 229);
 }
 
+/* no change can be made here when it comes to font size? how do I choose width, there is no difference between 300, 500 and 1000px? */
 .accordion-container {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   margin-bottom: 5px;
+  width: 1000px;
+  font-size: large; 
+
 }
 
 
