@@ -33,7 +33,7 @@ export type Size = string;
 
 export type SizeList = Size[];
 
-export const sizeList: SizeList = ["XS", "S", "M", "L", "XL"];
+export const sizeList: SizeList = [" XS ", " S ", " M ", " L ", " XL "];
 export interface IBrand {
   brandName: string;
   models: Array<IProduct>;

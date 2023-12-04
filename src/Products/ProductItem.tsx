@@ -13,29 +13,31 @@ export function ProductItem(props: ProductItemProps) {
   }
   return (
     <Card
-      style={{ width: "18rem", cursor: "pointer" }}
-      onClick={() => showDetails(props.item.id)}
+    font-weight="bold" //zasto ne radi?
+    border="light"
+    style={{ width: "18rem", cursor: "pointer", padding:"2px", margin:"10px"}}
+    onClick={() => showDetails(props.item.id)}
     >
       <Card.Img
         variant="top"
         src={props.item.imageURL}
-        width="300"
-        height="300"
+        width="500"
+        height="250"
       />
       <CardHeader> {props.item.brand.brandName}</CardHeader>
       <Card.Body>
-        <Card.Title> {props.item.name}</Card.Title>
+        <Card.Title className="card-title"> {props.item.name}</Card.Title>
         <Card.Text>
           {props.item.sizes.map((e, index) => (
-            <span key={index}>{e}</span>
+            <span key={index}> {e} </span>
           ))}
         </Card.Text>
         <Card.Text>
           {props.item.colors.map((e, index) => (
-            <span key={index}> {e}</span>
+            <span key={index}> {e} </span>
           ))}
         </Card.Text>
-        <Card.Text>Price: {props.item.price} EUR</Card.Text>
+        <Card.Text> {props.item.price} EUR</Card.Text>
       </Card.Body>
     </Card>
   );
