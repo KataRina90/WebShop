@@ -1,7 +1,6 @@
 import { Accordion, Container } from "react-bootstrap";
 import { useFilterProductProvider } from "../FilteredProductContext";
 import { colorList } from "../../Products/Product";
-import "./Colors.css"
 
 export default function Colors() {
   const [filteredProducts, dispatch] = useFilterProductProvider();

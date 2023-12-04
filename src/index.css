@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  font-family: serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(251, 242, 229);
 }
 
@@ -36,7 +36,7 @@ body {
   background-color: rgb(251, 242, 229);
 }
 
-.accordion-div {
+.accordion-container {
   display: flex;
   flex-direction: row;
   margin-top: 10px;

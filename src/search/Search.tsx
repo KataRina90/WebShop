@@ -4,7 +4,7 @@ import Sizes from "./Sizes/Sizes";
 
 export default function SearchCriteria() {
   return (
-    <div className="accordion-div">
+    <div className="accordion-container">
       <PriceRange />
       <Colors />
       <Sizes />
