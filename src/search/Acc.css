@@ -1,0 +1,12 @@
+
+.accordion {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+    border: thin;
+    display: block;
+    } 
+    
+    .accordion-flush {
+    background-color: rgb(250, 215, 231);
+    }

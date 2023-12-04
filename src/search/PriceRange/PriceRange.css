@@ -1,16 +1,3 @@
-/* .accordion-header {
-  cursor: pointer;
-  width: 100px;
-  padding: 10px;
-}
-
-.accordion-header:hover {
-  background-color: bisque;
-}
-
-.accordion-indicator {
-
-} */
 
 .input-price {
   width: 50px;
@@ -23,10 +10,3 @@
 */ label-price {
   display: inline;
 }
-
-.accordion {
-margin-top: 5px;
-margin-bottom: 10px;
-width: 250px;
-background-color: aqua;
-} 
