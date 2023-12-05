@@ -4,8 +4,21 @@
     margin-bottom: 10px;
     border: thin;
     width: 300px;
+    background-color: antiquewhite; /* cannot change bcg color, why? */
     } 
     
     .accordion-flush {
     background-color: rgb(250, 215, 231);
     }
+
+    /* no change can be made here when it comes to font size?
+     how do I choose width, there is no difference between 300, 500 and 1000px? */
+    .accordion-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        width: max-content;
+        font-size: large; 
+      
+      }
