@@ -2,7 +2,7 @@ import { IProduct } from "./Product";
 import Card from "react-bootstrap/Card";
 import CardHeader from "react-bootstrap/esm/CardHeader";
 import { useNavigate } from "react-router-dom";
-import './Card.css';
+import './CardProductItem.css';
 
 export interface ProductItemProps {
   item: IProduct;
