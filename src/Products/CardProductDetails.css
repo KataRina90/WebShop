@@ -1,0 +1,67 @@
+.card-style {
+    width: 18rem;
+    cursor: pointer;
+    border: light;
+    padding:0px;
+    margin:10px;
+    }
+
+    .card-img {
+/*         width:300px;
+        height:300px; */
+    }
+
+    .brand-name {
+      margin-top: 10px;
+      margin-bottom: 5px;  
+      font-size: x-large;
+    }
+
+    .product-detail {
+     font-weight: bold; 
+     color: brown;
+     margin-bottom: 5px;
+    
+    }
+
+    .label-style {
+    color: rgb(117, 116, 116);
+    padding-right: 20px;
+    }
+
+    .size-selector {
+        margin: 5px 0px 10px 2px;
+        width: 200px;
+        height: 30px;
+        border-color:rgb(117, 116, 116);
+        border-radius: 10px;
+    }
+
+    .color-selector {
+        margin: 5px 0px 30px 0px;
+        width: 200px;
+        height: 30px;
+        border-color:rgb(117, 116, 116);
+        border-radius: 10px;
+    }
+
+    /*why is widht here not being applied*/
+    .product-description-header {
+     width: 200px;
+     color: brown;
+    }
+
+    /*why is widht here not being applied*/
+    .product-description {
+     width: 400px;
+    }
+
+    .btn-to-basket{
+     width: 200px;
+     height: 50px;
+     border-radius: 10px;
+     border-width: 1px;
+     background-color: hsl(140, 46%, 18%);
+     color: white;
+     font-size: large;
+    }

@@ -35,7 +35,7 @@ export function ProductItem(props: ProductItemProps) {
             <span key={index}> {e} </span>
           ))}
         </Card.Text>
-        <Card.Text className="card-text-price"> {props.item.price} EUR</Card.Text>
+        <Card.Text className="card-text-price"> {props.item.price} €</Card.Text>
       </Card.Body>
     </Card>
   );
