@@ -11,9 +11,9 @@
 }
 
 .search-crtieria-container .accordion {
-  flex: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+  flex: initial;
 }
 
 .search-crtieria-container .accordion-item {

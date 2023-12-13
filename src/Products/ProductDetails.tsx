@@ -71,12 +71,12 @@ export function ProductDetails() {
 
             <p>
               <span className='product-description-header'>
-                {' '}
-                Product description: {<br />}{' '}
+           
+                Product description: {<br />}
               </span>
               <span className='product-description'>
-                {' '}
-                {productDetail.description}{' '}
+          
+                {productDetail.description}
               </span>
             </p>
 
@@ -92,8 +92,7 @@ export function ProductDetails() {
                   price: productDetail.price,
                 })
               }>
-              {' '}
-              Add to basket{' '}
+              Add to basket
             </button>
           </Container>
         </Col>
