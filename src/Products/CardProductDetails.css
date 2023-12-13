@@ -1,9 +1,9 @@
 .card-style {
-    width: 18rem;
+    /* width: 18rem; */
     cursor: pointer;
-    border: light;
-    padding:0px;
-    margin:10px;
+    /* border: light;
+    padding:0px; */
+    margin:0;
     }
 
     .card-img {
