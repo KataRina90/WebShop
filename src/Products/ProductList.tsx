@@ -1,6 +1,6 @@
-import { ProductItem } from "./ProductItem";
-import { CardGroup } from "react-bootstrap";
-import { useFilterProductProvider } from "../search/FilteredProductContext";
+import { ProductItem } from './ProductItem';
+import { CardGroup, Col, Row } from 'react-bootstrap';
+import { useFilterProductProvider } from '../search/FilteredProductContext';
 /* export interface ProductListProps {
     list: Array <IProduct>
 } */
@@ -19,10 +19,12 @@ export function ProductList() {
   console.log(filteredProducts);
 
   return (
-    <CardGroup>
+    <Row>
       {filteredProducts.map((product) => (
-        <ProductItem key={product.id} item={product} />
+        <Col sm={6} md={3}>
+          <ProductItem key={product.id} item={product} />
+        </Col>
       ))}
-    </CardGroup>
+    </Row>
   );
 }
