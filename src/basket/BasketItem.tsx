@@ -61,7 +61,7 @@ export function BasketItem(props: BasketItemProps) {
                         type: 'removeItem',
                         productId: product.id
                     })
-                }}> Remove Item</button>
+                }}> Remove </button>
 
             </Card>
         )

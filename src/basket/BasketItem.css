@@ -53,12 +53,16 @@ color: black;
    }
 
    .remove-button {
-     display: auto;
-     height: 50px;
-     border-radius: 10px;
-     border-width: 1px;
-     background-color: hsl(140, 46%, 18%);
-     color: white;
-     font-size: large;
+     max-width: 40%;
+     width: auto;
+     height: 30px;
+     margin: 0 0 5px 15px;
      padding:0 10px 0 10px;
+     border-radius: 10px;
+     border: 1px solid rgb(117, 116, 116);
+     background-color:whitesmoke;
+     color:rgb(117, 116, 116);
+     font-size: large;
+     text-align: center;
+   
    }
