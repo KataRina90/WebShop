@@ -1,0 +1,64 @@
+.card-style {
+/* border: light;
+width: 18rem; */
+cursor: pointer;
+padding:0px;
+margin:0;
+}
+
+.card-img {
+/* why isn't it working when i try using the class name to style the height and width
+width: 300px;
+height: 250px;
+*/
+}
+
+.card-header {
+   font-size: medium;
+   color: rgb(117, 116, 116);
+}
+
+.card-title {
+ margin: 0px;
+ font-size: larger;
+ font-weight: normal;
+ color:brown;
+}
+
+.card-text-size {
+margin-top:5px;
+margin-bottom:0px;
+color: black;
+
+}
+
+.card-text-colors {
+   margin-top:0px;
+   margin-bottom: 0px;
+   color: black;
+   }
+
+ .card-text-price {
+   font-weight: bold;
+   }
+
+   .input-quantity {
+   margin-top: 5px;
+   width: 50px;
+   border-radius: 10px;
+   border: 1px solid rgb(117, 116, 116);
+   margin-left: 5px;
+   padding-left: 5px;
+   text-align: center;
+   }
+
+   .remove-button {
+     display: auto;
+     height: 50px;
+     border-radius: 10px;
+     border-width: 1px;
+     background-color: hsl(140, 46%, 18%);
+     color: white;
+     font-size: large;
+     padding:0 10px 0 10px;
+   }

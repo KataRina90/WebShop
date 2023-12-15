@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IBasketItem } from './basketStructure';
 import { getProductByID } from '../Products/ProductListContext';
 import { useBasketProvider } from './basketContext';
+import './BasketItem.css'
 
 export interface BasketItemProps {
     item: IBasketItem
@@ -15,48 +16,52 @@ export function BasketItem(props: BasketItemProps) {
     }
 
     const product = getProductByID(props.item.productId) //kako stizem do props samog proizvoda koji ima jos dodatne props kao npr. brand? Tako sto sam funkciji dodelila return tip IProduct koji to sadrzi
-    const [basket,dispatch]=useBasketProvider()
+    const [basket, dispatch] = useBasketProvider()
 
 
     if (!product) {
         return (
-        <h1> Product not found </h1>
+            <h1> Product not found </h1>
         )
     }
     else
         return (
-            <Card style={{ width: '18rem', cursor: "pointer" }}>
-                <Card.Img variant='top' src={product.imageURL} width='300' height='300'  onClick={e => showDetails(props.item.productId)}/>
-                <CardHeader> {product.brand.brandName}</CardHeader>
+            <Card className='card-style'>
+                <Card.Img variant='top' src={product.imageURL} onClick={e => showDetails(props.item.productId)} />
+                <CardHeader className='card-header'> {product.brand.brandName}</CardHeader>
                 <Card.Body>
-                    <Card.Title> {product.name}</Card.Title>
+                    <Card.Title className='card-title'> {product.name}</Card.Title>
                     <Card.Text>
-                        <p> Size: {props.item.size}</p>
+                        <p className='card-text-size'> Size: {props.item.size}</p>
+                        <p className='card-text-colors'> Color: {props.item.color}</p>
+                        <p> Quantity:
+                            <input
+                                className='input-quantity'
+                                type={'number'}
+                                min='0'
+                                value={props.item.productAmount}
+                                onChange={e => {
+                                    dispatch({
+                                        type: 'editItem',
+                                        amount: parseInt(e.target.value),
+                                        price: product.price * (parseInt(e.target.value) ? parseInt(e.target.value) : 0),
+                                        productId: props.item.productId, // product.productID moze posto je isto
+                                        size: props.item.size
+                                    })
+                                }}
+                            >
+                            </input> <br/>
+                            Price: {props.item.amountPrice} € </p>
                     </Card.Text>
-                    <Card.Text>
-                        <p> Color: {props.item.color}</p>
-                    </Card.Text>
-                    <Card.Text>
-                        <input type={'number'} min='0'
-                         value={props.item.productAmount}
-                        onChange={e=>{dispatch({
-                            type:'editItem',
-                            amount: parseInt(e.target.value),
-                            price: product.price*(parseInt(e.target.value)?parseInt(e.target.value):0),
-                            productId: props.item.productId, // product.productID moze posto je isto
-                            size: props.item.size
-                        })}}
-                        > 
-    
-                        </input>
-                        Price: {props.item.amountPrice} EUR
-                    </Card.Text>
-
                 </Card.Body>
-                <button onClick={e=>{dispatch({
-                        type:'removeItem',
-                        productId:product.id
-                    })}}> Remove Item</button>
+
+                <button className='remove-button'
+                onClick={e => {
+                    dispatch({
+                        type: 'removeItem',
+                        productId: product.id
+                    })
+                }}> Remove Item</button>
 
             </Card>
         )
